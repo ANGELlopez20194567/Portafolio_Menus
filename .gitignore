@@ -1,0 +1,13 @@
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+secrets/*
+!secrets/README.md
+
+# Dependencias y resultados generados
+node_modules/
+dist/
+build/
+.next/
+coverage/
