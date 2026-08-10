@@ -1,0 +1,291 @@
+/* Light variant: glass is reserved for emphasis. */
+/* -------------------------------------------------------------------------- */
+/* Light visual variant                                                       */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --ink:#183a34;
+  --cream:#f7f2e9;
+  --orange:#e8724a;
+  --lime:#d8e986;
+  --line:rgba(24,58,52,.15);
+  --paper:#fffdf8;
+}
+body {
+  min-height:100vh;
+  color:var(--ink);
+  background:radial-gradient(circle at 87% 4%,rgba(230,188,116,.28),transparent 24rem),radial-gradient(circle at 7% 31%,rgba(173,207,169,.2),transparent 21rem),var(--cream);
+}
+body:before {
+  content:"";
+  position:fixed;
+  z-index:-1;
+  right:-13rem;
+  bottom:-15rem;
+  width:36rem;
+  height:36rem;
+  border-radius:50%;
+  background:rgba(229,129,89,.12);
+  filter:blur(40px);
+  pointer-events:none;
+}
+/* Header, navigation and hero */
+.site-header {
+  position:sticky;
+  z-index:10;
+  top:14px;
+  max-width:1170px;
+  height:65px;
+  padding:0 21px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:18px;
+  background:rgba(255,253,248,.72);
+  box-shadow:0 12px 30px rgba(23,54,52,.08);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.brand-mark {
+  background:linear-gradient(135deg,#244c43,#183a34);
+}
+.main-nav {
+  color:#315149;
+}
+.nav-cta {
+  border-color:rgba(24,58,52,.42);
+  background:rgba(255,255,255,.25);
+}
+.nav-cta:hover {
+  color:white;
+  background:var(--ink);
+}
+.hero {
+  max-width:1170px;
+  min-height:635px;
+  padding-top:83px;
+}
+.eyebrow {
+  color:#577060;
+}
+.eyebrow span {
+  border-color:var(--orange);
+}
+.hero h1,.section h2,.contact h2 {
+  letter-spacing:-.055em;
+}
+.hero h1 em,.section h2 em,.contact h2 em {
+  color:var(--orange);
+}
+.hero-text {
+  color:#5a706a;
+}
+.button-primary {
+  color:#fffdf8;
+  background:var(--ink);
+  box-shadow:0 12px 24px rgba(24,58,52,.17);
+}
+.button-primary:hover {
+  background:var(--orange);
+}
+.button-link {
+  color:#315149;
+}
+.button-link:hover {
+  color:var(--orange);
+}
+.hero-proof {
+  color:#4f6760;
+}
+.avatars i {
+  border-color:var(--cream);
+}
+/* La composiciÃƒÆ’Ã‚Â³n principal es uno de los pocos puntos con glass. */
+/* Main composition: one of the intentionally limited glass surfaces. */
+.hero-art {
+  border:1px solid rgba(255,255,255,.66);
+  border-radius:27px;
+  background:linear-gradient(145deg,rgba(255,255,255,.48),rgba(239,223,184,.58));
+  box-shadow:0 24px 52px rgba(23,54,52,.13);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.hero-art:before {
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(255,255,255,.52);
+  border-radius:19px;
+}
+.sun {
+  background:linear-gradient(135deg,#f8c56d,#ea7d58);
+}
+.plate-back {
+  background:#b85039;
+}
+.plate-main {
+  background:#fffaf1;
+  box-shadow:0 14px 0 #d9a48c,0 16px 28px rgba(73,40,28,.14);
+}
+.menu-card {
+  border:1px solid rgba(255,255,255,.42);
+  background:rgba(24,58,52,.88);
+  box-shadow:13px 15px 30px rgba(30,52,42,.16);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.floating-note {
+  background:#e8724a;
+  box-shadow:0 9px 18px rgba(136,68,45,.17);
+}
+/* Content sections */
+.section {
+  max-width:1170px;
+}
+.experiences {
+  border-color:var(--line);
+}
+.section-heading>p,.benefit-list p,.steps p,.faq details p {
+  color:#5a706a;
+}
+.cards {
+  gap:14px;
+}
+.experience-card {
+  border:1px solid rgba(24,58,52,.1);
+  background:var(--paper);
+  box-shadow:0 10px 24px rgba(24,58,52,.045);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.experience-card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 17px 30px rgba(24,58,52,.11);
+}
+.experience-card.featured {
+  color:#fffdf8;
+  background:#25483f;
+}
+.experience-card.warm {
+  background:#f6d58d;
+}
+.experience-card.light {
+  background:#deeee3;
+}
+.experience-card.dark {
+  color:#fffdf8;
+  background:#526b82;
+}
+.experience-card.coral {
+  background:#f5ac8e;
+}
+.experience-card button:hover {
+  color:var(--orange);
+}
+.benefits {
+  padding-top:42px;
+}
+.benefit-list {
+  gap:14px;
+}
+.benefit-list article {
+  border:1px solid var(--line);
+  background:rgba(255,253,248,.7);
+  box-shadow:none;
+}
+.benefit-list article:hover {
+  border-color:rgba(24,58,52,.3);
+}
+.benefit-list h3,.steps h3 {
+  color:var(--ink);
+}
+.process {
+  padding-top:58px;
+}
+.steps {
+  border-color:var(--line);
+}
+.steps article {
+  border-color:var(--line);
+}
+.steps b {
+  color:var(--orange);
+}
+.faq {
+  padding-top:62px;
+}
+.faq-list,.faq details {
+  border-color:var(--line);
+}
+.faq summary {
+  color:var(--ink);
+}
+.faq summary::marker {
+  color:var(--orange);
+}
+/* Segundo y ÃƒÆ’Ã‚Âºltimo uso fuerte de glass: la llamada final. */
+/* Contact call to action */
+.contact {
+  max-width:1114px;
+  margin:30px auto 0;
+  border:1px solid rgba(255,255,255,.58);
+  border-radius:25px;
+  background:linear-gradient(135deg,rgba(31,71,61,.9),rgba(70,105,80,.76));
+  box-shadow:0 20px 42px rgba(24,58,52,.16);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.contact p {
+  color:var(--lime);
+}
+.contact .button-primary {
+  color:var(--ink);
+  background:#fff8ef;
+}
+.contact .button-primary:hover {
+  background:var(--lime);
+}
+footer {
+  color:#58706b;
+}
+.toast {
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(24,58,52,.92);
+  backdrop-filter:blur(10px);
+}
+/* Responsive adjustments */
+@media(max-width:650px) {
+  .site-header {
+    top:8px;
+    margin:0 12px;
+    padding:0 15px;
+    border-radius:15px;
+  }
+  .menu-toggle span:not(.sr-only) {
+    border-color:var(--ink);
+  }
+  .main-nav {
+    background:rgba(255,253,248,.96);
+    border:1px solid rgba(24,58,52,.12);
+    box-shadow:0 15px 28px rgba(23,54,52,.12);
+    backdrop-filter:blur(16px);
+  }
+  .hero {
+    padding-top:65px;
+  }
+  .hero-art {
+    border-radius:21px;
+  }
+  .experience-card:hover {
+    transform:none;
+  }
+  .contact {
+    margin:0;
+    border-right:0;
+    border-left:0;
+    border-radius:0;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*:before {
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+}
