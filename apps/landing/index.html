@@ -1,52 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Diseñamos menús digitales para restaurantes: cartas interactivas, pedidos, reservas e información de tu negocio en una experiencia responsive.">
-  <meta name="robots" content="index, follow">
-  <title>Menús digitales para restaurantes | Mesa Digital</title>
+  <meta name="description" content="Portafolio de menús digitales para restaurantes.">
+  <title>Menús digitales | Mesa Digital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="glass.css">
 </head>
-
-
 <body>
-  <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Mesa Digital, inicio"><span class="brand-mark">M</span><span>Mesa <strong>Digital</strong></span></a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span><span class="sr-only">Abrir menú</span></button>
-    <nav id="main-nav" class="main-nav" aria-label="Navegación principal"><a href="#experiencias">Experiencias</a><a href="#beneficios">Beneficios</a><a href="#proceso">Cómo funciona</a><a class="nav-cta" href="#contacto">Crear mi menú</a></nav>
-  </header>
-  <main id="inicio">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> EXPERIENCIAS GASTRONÓMICAS</p>
-        <h1 id="hero-title">Menús digitales para restaurantes que <em>abren el apetito.</em></h1>
-        <p class="hero-text">Diseñamos menús digitales para restaurantes, pensados para que cada platillo se vea tan bien como sabe en cualquier dispositivo.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#experiencias">Ver demostraciones <span>→</span></a><a class="button button-link" href="#proceso">Conoce el proceso <span>↓</span></a></div>
-        <div class="hero-proof"><div class="avatars" aria-hidden="true"><i></i><i></i><i></i></div><p><strong>5 experiencias</strong><br>para diferentes estilos de servicio</p></div>
-      </div>
-      <div class="hero-art" aria-label="Ilustración de una vista previa de menú digital"><div class="sun"></div><div class="plate plate-back"></div><div class="plate plate-main"><span>•</span><span>•</span><span>•</span></div><div class="menu-card"><p>LA CASA</p><h2>Menú<br>de temporada</h2><div class="card-line"></div><small>Sabores que cuentan historias</small></div><div class="floating-note">Hecho para<br><strong>antojar</strong> <span>✦</span></div></div>
+  <main class="menu-hub">
+    <section class="menu-panel" aria-labelledby="menu-title">
+      <p class="eyebrow">MESA DIGITAL</p>
+      <h1 id="menu-title">Tipos de menú</h1>
+      <p class="intro">Categorías de referencia para organizar los próximos menús.</p>
+      <ul class="menu-types" aria-label="Tipos de menú">
+        <li>Menú interactivo</li>
+        <li>Menú de pedidos</li>
+        <li>Menú informativo</li>
+        <li>Menú con reservas</li>
+        <li>Menú estático</li>
+      </ul>
+      <a class="draft-link" href="../borrador/">Abrir borrador de pruebas</a>
     </section>
-    <section id="experiencias" class="experiences section" aria-labelledby="experiencias-title">
-      <div class="section-heading"><div><p class="eyebrow"><span></span> ELIGE TU EXPERIENCIA</p><h2 id="experiencias-title">Un menú para cada <em>manera de servir.</em></h2></div><p>Explora distintos formatos de menú digital y encuentra el que mejor acompaña a tu restaurante.</p></div>
-      <div class="cards">
-        <article class="experience-card featured"><p class="card-number">01</p><span class="card-icon" aria-hidden="true">⌁</span><h3>Menú interactivo</h3><p>Una experiencia visual para descubrir cada platillo a tu ritmo.</p><button data-demo="Menú interactivo">Explorar demo <span>→</span></button></article>
-        <article class="experience-card warm"><p class="card-number">02</p><span class="card-icon" aria-hidden="true">✦</span><h3>Menú de pedidos</h3><p>Facilita la elección y recibe pedidos desde cualquier dispositivo.</p><button data-demo="Menú de pedidos">Explorar demo <span>→</span></button></article>
-        <article class="experience-card light"><p class="card-number">03</p><span class="card-icon" aria-hidden="true">◌</span><h3>Menú informativo</h3><p>Todos tus platillos, horarios y datos esenciales en un solo lugar.</p><button data-demo="Menú informativo">Explorar demo <span>→</span></button></article>
-        <article class="experience-card dark"><p class="card-number">04</p><span class="card-icon" aria-hidden="true">♡</span><h3>Menú con reservas</h3><p>Presenta tu propuesta y recibe reservaciones sin complicaciones.</p><button data-demo="Menú con reservas">Explorar demo <span>→</span></button></article>
-        <article class="experience-card coral"><p class="card-number">05</p><span class="card-icon" aria-hidden="true">⌇</span><h3>Menú estático</h3><p>Una carta clara y elegante, lista para compartir con tus clientes.</p><button data-demo="Menú estático">Explorar demo <span>→</span></button></article>
-      </div>
-    </section>
-    <section id="beneficios" class="benefits section" aria-labelledby="beneficios-title"><div class="section-heading"><div><p class="eyebrow"><span></span> HECHO PARA TU RESTAURANTE</p><h2 id="beneficios-title">Una carta digital clara, rápida y <em>fácil de compartir.</em></h2></div><p>Una experiencia web que presenta tu propuesta gastronómica con información útil para tus comensales.</p></div><div class="benefit-list"><article><h3>Diseño responsive</h3><p>Tu menú se adapta a celulares, tabletas y computadoras para que se consulte cómodamente antes o durante la visita.</p></article><article><h3>Información organizada</h3><p>Platillos, horarios, datos de contacto y opciones de reserva reunidos en una carta digital fácil de recorrer.</p></article><article><h3>Identidad de marca</h3><p>La estructura y el estilo visual se adaptan al concepto de tu restaurante para comunicar una experiencia coherente.</p></article></div></section>
-    <section id="proceso" class="process section" aria-labelledby="proceso-title"><p class="eyebrow"><span></span> SIMPLE Y CLARO</p><h2 id="proceso-title">De tu cocina a sus manos<br><em>en tres pasos.</em></h2><div class="steps"><article><b>01</b><h3>Cuéntanos tu historia</h3><p>Compartimos la esencia de tu restaurante, su carta y estilo.</p></article><article><b>02</b><h3>Diseñamos la experiencia</h3><p>Transformamos tus platillos en un menú hecho a tu medida.</p></article><article><b>03</b><h3>Listo para servir</h3><p>Recibes un enlace listo para abrir desde cualquier dispositivo.</p></article></div></section>
-    <section class="faq section" aria-labelledby="faq-title"><p class="eyebrow"><span></span> PREGUNTAS FRECUENTES</p><h2 id="faq-title">Todo lo esencial sobre tu <em>menú digital.</em></h2><div class="faq-list"><details><summary>¿Qué incluye un menú digital para restaurante?</summary><p>Puede presentar platillos, categorías, precios, horarios, datos de contacto y enlaces para pedidos o reservaciones, según las necesidades de cada restaurante.</p></details><details><summary>¿El menú digital funciona en celular?</summary><p>Sí. La experiencia se diseña con enfoque responsive para que los comensales puedan consultarla desde el celular, la tableta o una computadora.</p></details><details><summary>¿Puedo actualizar la información de mi carta?</summary><p>La estructura permite mantener la carta, horarios y datos del restaurante actualizados. Define con tu equipo el flujo de actualización que mejor se adapte a tu operación.</p></details></div></section>
-    <section id="contacto" class="contact" aria-labelledby="contacto-title"><p>¿Listo para renovar tu carta?</p><h2 id="contacto-title">Hagamos algo<br><em>delicioso.</em></h2><a class="button button-primary" href="mailto:hola@mesadigital.mx">Quiero mi menú <span>→</span></a></section>
   </main>
-  <footer><a class="brand" href="#inicio" aria-label="Mesa Digital, volver al inicio"><span class="brand-mark">M</span><span>Mesa <strong>Digital</strong></span></a><p>Menús digitales con mucho sabor.</p><small>© <span id="year"></span> Mesa Digital</small></footer>
-  <div class="toast" role="status" aria-live="polite"></div><script src="script.js"></script>
 </body>
 </html>
