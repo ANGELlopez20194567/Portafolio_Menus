@@ -4,22 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Borrador de pruebas | Mesa Digital</title>
+  <meta name="description" content="Portafolio experimental de experiencias digitales para restaurantes.">
+  <title>RayelTech — Menús que dan hambre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <main>
-    <p class="label">ESPACIO DE TRABAJO</p>
-    <h1>Borrador de pruebas</h1>
-    <p>Usa esta página para experimentar con estructura, estilos y componentes antes de pasarlos a un menú definitivo.</p>
-    <section aria-labelledby="pendiente-title">
-      <h2 id="pendiente-title">Próximas pruebas</h2>
-      <ul>
-        <li>Escribe aquí la prueba que vas a realizar.</li>
-        <li>Duplica, modifica o elimina estos bloques según necesites.</li>
-      </ul>
+  <main class="portfolio-shell">
+    <aside class="intro-panel" aria-label="Presentación de RayelTech">
+      <a class="brand" href="../landing/" aria-label="RayelTech, volver al inicio">RayelTech</a>
+      <h1>Menús<br>que dan<br>hambre</h1>
+      <p class="discipline">Diseño Web · Experiencias</p>
+      <p class="counter" aria-live="polite"><span id="current-card">01</span><span aria-hidden="true"> / </span><span class="sr-only">de</span><span>06</span></p>
+      <p class="location">México · 2026</p>
+    </aside>
+    <section class="work-feed" id="work-feed" aria-label="Selección de proyectos" tabindex="0">
+      <article class="project-card is-active" data-index="1"><img src="assets/tostada-editorial.png" alt="Tostada contemporánea servida sobre un plato azul"><div class="project-copy"><p>Identidad digital</p><h2>Maíz de luz</h2></div></article>
+      <article class="project-card" data-index="2"><img src="assets/ravioli-editorial.png" alt="Ravioles de betabel sobre plato rojo"><div class="project-copy"><p>Menú inmersivo</p><h2>Rojo vivo</h2></div></article>
+      <article class="project-card" data-index="3"><img src="assets/sesamo-editorial.png" alt="Postre de sésamo negro y mango"><div class="project-copy"><p>Dirección de arte</p><h2>Noche mango</h2></div></article>
+      <article class="project-card" data-index="4"><img src="assets/pulpo-editorial.png" alt="Pulpo asado con cítricos y hierbas"><div class="project-copy"><p>Experiencia editorial</p><h2>Mar eléctrico</h2></div></article>
+      <article class="project-card" data-index="5"><img src="assets/pastel-editorial.png" alt="Pastel de chocolate y frambuesa"><div class="project-copy"><p>Carta de postres</p><h2>Rosa cacao</h2></div></article>
+      <article class="project-card" data-index="6"><img src="assets/mezcal-editorial.png" alt="Cóctel de mezcal e hibisco con hielo"><div class="project-copy"><p>Menú de autor</p><h2>Turquesa</h2></div></article>
     </section>
-    <a href="../landing/">← Volver al índice</a>
   </main>
 </body>
 </html>
