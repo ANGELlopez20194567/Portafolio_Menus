@@ -4,6 +4,8 @@ Colección de demos web para restaurantes. La portada está en `apps/landing`.
 
 La guía SEO independiente está en [docs/SEO.md](docs/SEO.md).
 
+La taxonomía vigente de productos y su historial están en [docs/MENU_CATEGORIES_HISTORY.md](docs/MENU_CATEGORIES_HISTORY.md). Este documento es la referencia para crear fichas técnicas posteriores.
+
 ## Dónde va cada cosa
 
 | Tipo de contenido | Ubicación |
@@ -27,16 +29,14 @@ La landing se encuentra en `apps/landing/index.html`. Las secciones SEO están i
 | Título SEO | `<title>` dentro de `<head>` | Resume la página con su tema principal y marca. Procura que sea específico y legible. |
 | Descripción SEO | `<meta name="description">` dentro de `<head>` | Explica el beneficio de la página en una frase natural. Debe corresponder al contenido visible. |
 | Instrucción de indexación | `<meta name="robots">` dentro de `<head>` | Mantén `index, follow` en páginas públicas que deban aparecer en buscadores. |
-| Encabezado principal | `<h1 id="hero-title">` en la sección `#inicio` | Usa un único `h1` que explique el propósito de la página con la frase clave principal. |
-| Navegación | `<nav aria-label="Navegación principal">` en el encabezado | Enlaza a secciones reales y usa textos descriptivos, como “Beneficios” o “Cómo funciona”. |
-| Secciones de contenido | `#experiencias`, `#beneficios`, `#proceso` y `#contacto` | Cada sección tiene un `<h2>` que desarrolla una parte concreta de la propuesta. |
-| Contenido independiente | Tarjetas y pasos con `<article>` | Úsalo para bloques que pueden entenderse de forma independiente, como cada tipo de menú o beneficio. |
-| Preguntas frecuentes | Sección `.faq` con `<details>` | Responde preguntas reales de clientes con respuestas claras. Actualízala cuando aparezcan dudas recurrentes. |
+| Encabezado principal | `<h1 id="menu-title">` dentro de `.menu-header` | Usa un único `h1` que explique el propósito de la página con la frase clave principal. |
+| Sección de categorías | `.menu-grid` | Agrupa las seis soluciones vigentes y conecta su título con la sección mediante `aria-labelledby`. |
+| Contenido independiente | Tarjetas `.menu-card` con `<article>` | Cada categoría se entiende por sí misma e incluye nombre, descripción y funciones. |
 | Texto alternativo | `aria-label` en elementos gráficos y enlaces | Describe el propósito cuando la información no está disponible como texto visible. |
 
 ## Palabras clave: cómo usarlas
 
-La frase principal actual es **“menús digitales para restaurantes”**. También se emplean variaciones naturales como “carta digital”, “menú interactivo”, “menú de pedidos” y “menú con reservas”. Estas frases están en el título, la descripción, el `h1`, los encabezados y el texto de las secciones cuando aportan contexto.
+La frase principal actual es **“menús digitales para restaurantes”**. Las seis categorías de producto vigentes son **Classic Menu**, **Interactive Menu**, **Smart Menu**, **Customizable Menu**, **Menu + Reservations** y **Restaurant Experience**. También pueden emplearse variaciones naturales como “carta digital”, “menú interactivo”, “menú inteligente”, “menú personalizable” y “menú con reservaciones” cuando aporten contexto.
 
 Buenas prácticas:
 

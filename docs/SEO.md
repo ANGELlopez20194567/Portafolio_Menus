@@ -12,15 +12,13 @@ La página está en `apps/landing/index.html`.
 | Título | `<title>` dentro de `<head>` | Describe el servicio y la marca en un texto único para cada página. |
 | Descripción | `<meta name="description">` dentro de `<head>` | Resume el beneficio principal de forma natural y coherente con el contenido. |
 | Robots | `<meta name="robots">` dentro de `<head>` | Usa `index, follow` únicamente en páginas públicas que deban aparecer en buscadores. |
-| Título principal | `<h1 id="hero-title">` en `#inicio` | Debe haber solo un `h1` y explicar el objetivo de la página. |
-| Secciones | `<section>` con `h2` | Organizan experiencias, beneficios, proceso, preguntas frecuentes y contacto. |
-| Bloques de contenido | `<article>` | Se usan para beneficios, pasos y tarjetas que se entienden por sí mismas. |
-| Navegación | `<nav>` en el encabezado | Debe enlazar a contenido real con textos descriptivos. |
-| Preguntas frecuentes | Sección `.faq` | Responde dudas reales de clientes con preguntas y respuestas claras. |
+| Título principal | `<h1 id="menu-title">` dentro de `.menu-header` | Debe haber solo un `h1` y explicar el objetivo de la página. |
+| Sección de categorías | `.menu-grid` | Presenta las seis soluciones vigentes bajo el título principal. |
+| Bloques de contenido | `<article class="menu-card">` | Cada categoría tiene un nombre único, una descripción y su lista de funciones. |
 
 ## Palabras clave
 
-La palabra clave principal de esta landing es **“menús digitales para restaurantes”**. Sus variaciones naturales incluyen “carta digital”, “menú interactivo”, “menú de pedidos” y “menú con reservas”.
+La palabra clave principal de esta landing es **“menús digitales para restaurantes”**. Las categorías de producto se nombran **Classic Menu**, **Interactive Menu**, **Smart Menu**, **Customizable Menu**, **Menu + Reservations** y **Restaurant Experience**. Sus variaciones naturales en español incluyen “carta digital”, “menú interactivo”, “menú inteligente”, “menú personalizable” y “menú con reservaciones”.
 
 Úsalas en el título, la metadescripción, el `h1`, algunos `h2` y el texto visible solo cuando describan de forma natural el servicio. Todas las partes de la página deben hablar del mismo tema.
 
