@@ -11,3 +11,7 @@ Portafolio editorial de RayelTech con panel de presentación fijo y una galería
 En móvil, el encabezado se comprime y permanece visible mientras la galería conserva el desplazamiento vertical por tarjetas. Las anotaciones de Figma “Izquierda columna” y “Derecha columna” no forman parte de la interfaz.
 
 La galería también incluye controles anterior/siguiente, enlaces clicables, una invitación contextual para puntero y navegación con teclado. El panel de presentación incorpora un acceso a cotización y enlaces sociales.
+
+## Escala responsive
+
+En escritorio, la composición usa como referencia el lienzo original de 1920 × 900. La cuadrícula reparte el espacio por porcentaje y una unidad `rem` proporcional al lado limitante escala conjuntamente textos, separaciones, radios e iconos. Así se conserva la relación visual tanto en monitores como en pantallas de laptop. Por debajo de 720 px se restablece una base de 16 px y se aplica la composición móvil independiente.

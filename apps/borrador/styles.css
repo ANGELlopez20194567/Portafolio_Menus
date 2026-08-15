@@ -1,5 +1,11 @@
 :root {
   color-scheme: light;
+  /*
+   * Escala de escritorio: 1rem equivale al 1% del ancho del diseño.
+   * El límite por altura conserva la proporción original 1920 × 900 y evita
+   * que textos, iconos o espacios crezcan fuera del lienzo en monitores anchos.
+   */
+  font-size: min(1vw, 2.133333vh);
   font-family: "Inter", Arial, sans-serif;
   color: #090609;
   background: #be00f4;
@@ -26,18 +32,18 @@ body {
 .portfolio-shell {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(330px, 36%) minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: 36% minmax(0, 1fr);
+  gap: 1.0417rem;
   height: 100dvh;
-  padding: clamp(16px, 3.4vw, 42px);
+  padding: 2.1875rem;
 }
 
 .intro-panel {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  padding: clamp(28px, 3vw, 38px) clamp(30px, 3vw, 42px) 18px;
-  border-radius: 38px;
+  padding: 1.9792rem 2.1875rem .9375rem;
+  border-radius: 1.9792rem;
   background: var(--cream);
 }
 
@@ -45,15 +51,15 @@ body {
   align-self: flex-start;
   color: var(--purple);
   font-family: "Anton", Impact, sans-serif;
-  font-size: clamp(1.8rem, 3.4vw, 2.65rem);
+  font-size: 2.25rem;
   line-height: 1;
   text-decoration: none;
 }
 
 h1 {
-  margin: clamp(26px, 4vh, 42px) 0 0;
+  margin: 1.75rem 0 0;
   font-family: "Anton", Impact, sans-serif;
-  font-size: clamp(4rem, 7.5vw, 7.1rem);
+  font-size: 6rem;
   font-weight: 400;
   line-height: .9;
   letter-spacing: -.025em;
@@ -61,8 +67,8 @@ h1 {
 }
 
 .discipline {
-  margin: clamp(34px, 5vh, 52px) 4px 0;
-  font-size: clamp(.95rem, 1.35vw, 1.18rem);
+  margin: 2.7083rem .2083rem 0;
+  font-size: 1.0417rem;
 }
 
 .counter-block {
@@ -72,7 +78,7 @@ h1 {
 .counter {
   margin: 0;
   color: var(--purple);
-  font-size: clamp(4.2rem, 7vw, 7.1rem);
+  font-size: 5.625rem;
   font-weight: 700;
   letter-spacing: -.07em;
   line-height: 1;
@@ -82,13 +88,13 @@ h1 {
 .quote-button {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 13px 18px;
-  border: 2px solid var(--purple);
+  gap: .5208rem;
+  margin-top: 1.0417rem;
+  padding: .6771rem .9375rem;
+  border: .1042rem solid var(--purple);
   border-radius: 999px;
   color: var(--purple);
-  font-size: .88rem;
+  font-size: .7292rem;
   font-weight: 700;
   text-decoration: none;
   transition: color .2s ease, background-color .2s ease, transform .2s ease;
@@ -100,12 +106,12 @@ h1 {
   transform: translateY(-2px);
 }
 
-.intro-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-.social-links { display: flex; gap: 8px; }
+.intro-footer { display: flex; align-items: center; justify-content: space-between; gap: .9375rem; }
+.social-links { display: flex; gap: .4167rem; }
 .social-links a {
   display: grid;
-  width: 36px;
-  height: 36px;
+  width: 1.875rem;
+  height: 1.875rem;
   place-items: center;
   border: 1px solid rgba(9, 6, 9, .2);
   border-radius: 50%;
@@ -117,7 +123,7 @@ h1 {
 
 .location {
   margin: 0;
-  font-size: clamp(.95rem, 1.35vw, 1.12rem);
+  font-size: .9375rem;
 }
 
 .work-feed {
@@ -127,7 +133,7 @@ h1 {
   overscroll-behavior: contain;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
-  border-radius: 38px;
+  border-radius: 1.9792rem;
   outline: none;
 }
 
@@ -141,7 +147,7 @@ h1 {
   height: 100%;
   min-height: 100%;
   overflow: hidden;
-  border-radius: 38px;
+  border-radius: 1.9792rem;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   background: #a800da;
@@ -153,21 +159,22 @@ h1 {
 .feed-controls {
   position: absolute;
   z-index: 4;
-  right: calc(clamp(16px, 3.4vw, 42px) + 20px);
-  bottom: calc(clamp(16px, 3.4vw, 42px) + 20px);
+  right: 3.2292rem;
+  bottom: 3.2292rem;
   display: flex;
-  gap: 8px;
+  gap: .4167rem;
 }
 
 .feed-control {
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 2.5rem;
+  height: 2.5rem;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, .6);
   border-radius: 50%;
   color: #090609;
   background: rgba(245, 232, 230, .94);
+  font-size: .8333rem;
   box-shadow: 0 8px 24px rgba(20, 0, 28, .22);
   cursor: pointer;
   transition: transform .2s ease, background-color .2s ease, opacity .2s ease;
@@ -182,22 +189,22 @@ h1 {
   top: 0;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 10px 14px;
+  gap: .3646rem;
+  padding: .5208rem .7292rem;
   border-radius: 999px;
   color: #fff;
   background: #090609;
-  font-size: .76rem;
+  font-size: .625rem;
   font-weight: 700;
   pointer-events: none;
   opacity: 0;
-  transform: translate(18px, 18px) scale(.9);
+  transform: translate(.9375rem, .9375rem) scale(.9);
   transition: opacity .15s ease, transform .15s ease;
 }
-.cursor-message.is-visible { opacity: 1; transform: translate(18px, 18px) scale(1); }
+.cursor-message.is-visible { opacity: 1; transform: translate(.9375rem, .9375rem) scale(1); }
 
 .project-card+.project-card {
-  margin-top: 20px;
+  margin-top: 1.0417rem;
 }
 
 .project-card img {
@@ -224,15 +231,15 @@ h1 {
 .project-copy {
   position: absolute;
   z-index: 1;
-  left: clamp(24px, 4vw, 48px);
-  right: 28px;
-  bottom: clamp(24px, 4vw, 46px);
+  left: 3.125rem;
+  right: 1.4583rem;
+  bottom: 2.3958rem;
   color: #fff;
 }
 
 .project-copy p {
-  margin: 0 0 6px;
-  font-size: .75rem;
+  margin: 0 0 .3125rem;
+  font-size: .625rem;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -241,7 +248,7 @@ h1 {
 .project-copy h2 {
   margin: 0;
   font-family: "Anton", Impact, sans-serif;
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: 4.1667rem;
   font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
@@ -260,6 +267,9 @@ h1 {
 }
 
 @media (max-width: 720px) {
+  :root {
+    font-size: 16px;
+  }
   html, body {
     overflow: hidden;
   }
