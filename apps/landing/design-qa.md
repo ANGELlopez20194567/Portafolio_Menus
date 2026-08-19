@@ -2,13 +2,13 @@
 
 - `C:\Users\DLopez\AppData\Local\Temp\codex-clipboard-1366b3f8-4072-4335-8030-5fa9bed02306.png`
 - Source pixels: 1120 × 796 at 1× density.
-- Intended state: desktop, first card selected (`01 / 06`).
+- Intended state: desktop, first card “Classic Menu” selected (`01 / 06`).
 
 **Implementation evidence**
 
-- Desktop: `C:\Users\DLopez\OneDrive - Singledigits\Escritorio\Por\Portafolio_Menu\apps\borrador\implementation-desktop.png`
-- Mobile: `C:\Users\DLopez\OneDrive - Singledigits\Escritorio\Por\Portafolio_Menu\apps\borrador\implementation-mobile.png`
-- Side-by-side comparison: `C:\Users\DLopez\OneDrive - Singledigits\Escritorio\Por\Portafolio_Menu\apps\borrador\design-comparison.png`
+- Desktop: `C:\Users\DLopez\OneDrive - Singledigits\Escritorio\Por\Portafolio_Menu\apps\landing\implementation-desktop.png`
+- Mobile: `C:\Users\DLopez\OneDrive - Singledigits\Escritorio\Por\Portafolio_Menu\apps\landing\implementation-mobile.png`
+- Side-by-side comparison: `C:\Users\DLopez\OneDrive - Singledigits\Escritorio\Por\Portafolio_Menu\apps\landing\design-comparison.png`
 - Desktop viewport and pixels: 1120 × 796 CSS px, device scale factor 1.
 - Mobile viewport and pixels: 390 × 844 CSS px, device scale factor 1.
 - No density normalization was required.

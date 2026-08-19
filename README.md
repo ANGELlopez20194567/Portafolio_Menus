@@ -2,6 +2,8 @@
 
 Colección de demos web para restaurantes. La portada está en `apps/landing`.
 
+El primer ejemplo terminado es `apps/classic`: una carta italiana responsive. La tarjeta flotante de cotización reutilizable vive en `packages/floating-quote-card`.
+
 La guía SEO independiente está en [docs/SEO.md](docs/SEO.md).
 
 La taxonomía vigente de productos y su historial están en [docs/MENU_CATEGORIES_HISTORY.md](docs/MENU_CATEGORIES_HISTORY.md). Este documento es la referencia para crear fichas técnicas posteriores.

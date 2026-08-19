@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Menú italiano clásico con pastas, pizzas, platos fuertes, postres y bebidas.">
+  <title>Italian Restaurant | Classic Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="../../packages/floating-quote-card/quote-card.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#inicio" aria-label="Italian Restaurant, inicio">
+      <span class="logo-monogram" aria-hidden="true">IR</span>
+      <span><strong>ITALIAN</strong><small>RESTAURANT</small></span>
+    </a>
+    <nav aria-label="Categorías del menú">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="category-nav">Menú <span aria-hidden="true">☰</span></button>
+      <div id="category-nav" class="nav-links">
+        <a href="#entradas">Entradas</a><a href="#pastas">Pastas</a><a href="#pizzas">Pizzas</a><a href="#fuertes">Platos fuertes</a><a href="#postres">Postres</a><a href="#bebidas">Bebidas</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <div class="menu-intro">
+      <p>CUCINA ITALIANA · CLASSIC MENU</p>
+      <h1>Il nostro menu</h1>
+      <span>Recetas italianas, ingredientes esenciales y precios expresados en MXN.</span>
+    </div>
+    <div id="menu-sections"></div>
+  </main>
+
+  <footer id="cotizar">
+    <a class="logo logo-light" href="#inicio"><span class="logo-monogram">IR</span><span><strong>ITALIAN</strong><small>RESTAURANT</small></span></a>
+    <p>Classic Menu · Una experiencia digital elegante y directa.</p>
+    <a href="mailto:hola@ejemplo.com?subject=Cotización%20Classic%20Menu">Solicitar cotización</a>
+  </footer>
+
+  <quote-card label="CLASSIC MENU" title="Una carta que abre el apetito" description="Presenta cada platillo con elegancia, lectura clara y acceso inmediato desde cualquier dispositivo." features="6 categorías,36 platillos,Responsive,Siempre visible" cta="Cotizar menú" href="#cotizar"></quote-card>
+  <script src="script.js"></script>
+</body>
+</html>
