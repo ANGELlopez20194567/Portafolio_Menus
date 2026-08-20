@@ -4,46 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Portafolio experimental de experiencias digitales para restaurantes.">
-  <title>RayelTech — Menús que dan hambre</title>
+  <meta name="description" content="Portafolio de experiencias digitales editoriales para restaurantes.">
+  <title>RavelTech — Menús que dan hambre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <main class="portfolio-shell">
-    <aside class="intro-panel" aria-label="Presentación de RayelTech">
-      <a class="brand" href="../landing/" aria-label="RayelTech, volver al inicio">RayelTech</a>
-      <h1>Menús<br>que dan<br>hambre</h1>
-      <p class="discipline">Diseño Web · Experiencias</p>
-      <div class="counter-block">
-        <p class="counter" aria-live="polite"><span id="current-card">01</span><span aria-hidden="true"> / </span><span class="sr-only">de</span><span>06</span></p>
-        <a class="quote-button" href="../landing/">Cotiza tu menú <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
-      </div>
-      <footer class="intro-footer">
-        <p class="location">México · 2026</p>
-        <nav class="social-links" aria-label="Redes sociales">
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-        </nav>
-      </footer>
+    <aside class="intro-panel" aria-label="Presentación de RavelTech">
+      <a class="brand" href="../landing/" aria-label="RavelTech, volver al inicio">RavelTech<sup>®</sup></a>
+      <button class="theme-switch" id="theme-switch" type="button" aria-label="Activar modo sombra" aria-pressed="false"><span>Luz</span><span>Sombra</span></button>
+      <div class="title-group"><h1>Menús<br>que dan<br>hambre</h1><p>Haz que cada comensal quiera<br>pedir un poco más.</p></div>
+      <div class="project-meta"><p class="counter" aria-live="polite"><span id="current-card">01</span> <span aria-hidden="true">/</span> <span>06</span></p><p class="project-type">Restaurant menus</p><a class="quote-button" href="../classic/#cotizar">Cotiza tu menú <span aria-hidden="true">↗</span></a></div>
+      <footer class="intro-footer"><p>México · 2026</p></footer>
     </aside>
     <section class="work-feed" id="work-feed" aria-label="Selección de proyectos" tabindex="0">
-      <a class="project-card is-active" data-index="1" href="../classic/" aria-label="Abrir ejemplo Italian Restaurant Classic Menu"><img src="assets/classic-menu-editorial.png" alt="Presentación editorial de un menú italiano con categorías, platillos y precios"><div class="project-copy"><p>Italian Restaurant · Ver menú</p><h2>Classic Menu</h2></div></a>
-      <a class="project-card" data-index="2" href="../landing/"><img src="assets/ravioli-editorial.png" alt="Ravioles de betabel sobre plato rojo"><div class="project-copy"><p>Menú inmersivo</p><h2>Rojo vivo</h2></div></a>
-      <a class="project-card" data-index="3" href="../landing/"><img src="assets/sesamo-editorial.png" alt="Postre de sésamo negro y mango"><div class="project-copy"><p>Dirección de arte</p><h2>Noche mango</h2></div></a>
-      <a class="project-card" data-index="4" href="../landing/"><img src="assets/pulpo-editorial.png" alt="Pulpo asado con cítricos y hierbas"><div class="project-copy"><p>Experiencia editorial</p><h2>Mar eléctrico</h2></div></a>
-      <a class="project-card" data-index="5" href="../landing/"><img src="assets/pastel-editorial.png" alt="Pastel de chocolate y frambuesa"><div class="project-copy"><p>Carta de postres</p><h2>Rosa cacao</h2></div></a>
-      <a class="project-card" data-index="6" href="../landing/"><img src="assets/mezcal-editorial.png" alt="Cóctel de mezcal e hibisco con hielo"><div class="project-copy"><p>Menú de autor</p><h2>Turquesa</h2></div></a>
+      <a class="project-card is-active" data-index="1" href="../classic/" aria-label="Abrir Classic Menu de restaurante italiano"><img src="assets/classic-menu-editorial.png" alt="Carta italiana presentada como una pieza editorial sobre fondo verde oscuro"><div class="project-copy"><p>01 / Classic menu</p><h2>Classic<br>Menu</h2></div></a>
+      <a class="project-card" data-index="2" href="../landing/"><img src="assets/ravioli-editorial.png" alt="Ravioles de betabel sobre plato rojo"><div class="project-copy"><p>02 / Menú inmersivo</p><h2>Rojo vivo</h2></div></a>
+      <a class="project-card" data-index="3" href="../landing/"><img src="assets/sesamo-editorial.png" alt="Postre de sésamo negro y mango"><div class="project-copy"><p>03 / Dirección de arte</p><h2>Noche mango</h2></div></a>
+      <a class="project-card" data-index="4" href="../landing/"><img src="assets/pulpo-editorial.png" alt="Pulpo asado con cítricos y hierbas"><div class="project-copy"><p>04 / Experiencia editorial</p><h2>Mar eléctrico</h2></div></a>
+      <a class="project-card" data-index="5" href="../landing/"><img src="assets/pastel-editorial.png" alt="Pastel de chocolate y frambuesa"><div class="project-copy"><p>05 / Carta de postres</p><h2>Rosa cacao</h2></div></a>
+      <a class="project-card" data-index="6" href="../landing/"><img src="assets/mezcal-editorial.png" alt="Cóctel de mezcal e hibisco con hielo"><div class="project-copy"><p>06 / Menú de autor</p><h2>Turquesa</h2></div></a>
     </section>
-    <div class="feed-controls" aria-label="Navegar por proyectos">
-      <button class="feed-control" id="previous-card" type="button" aria-label="Proyecto anterior"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
-      <button class="feed-control" id="next-card" type="button" aria-label="Proyecto siguiente"><i class="bi bi-arrow-down" aria-hidden="true"></i></button>
-    </div>
-    <span class="cursor-message" id="cursor-message" aria-hidden="true">Conoce más <i class="bi bi-arrow-up-right"></i></span>
+    <div class="feed-controls" aria-label="Navegar por proyectos"><button class="feed-control" id="previous-card" type="button" aria-label="Proyecto anterior">↑</button><button class="feed-control" id="next-card" type="button" aria-label="Proyecto siguiente">↓</button></div>
+    <span class="cursor-message" id="cursor-message" aria-hidden="true">Conoce más <span aria-hidden="true">↗</span></span>
   </main>
 </body>
 </html>
