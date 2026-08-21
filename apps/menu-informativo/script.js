@@ -19,7 +19,6 @@ nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () =>
 
 function showCategory(index) {
   currentCategory = (index + categories.length) % categories.length;
-  track.style.transform = `translateX(-${currentCategory * 100}%)`;
   categories.forEach((category, categoryIndex) => {
     const isCurrent = categoryIndex === currentCategory;
     category.classList.toggle('is-current', isCurrent);
