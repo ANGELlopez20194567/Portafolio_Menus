@@ -1,0 +1,179 @@
+.site-header > .header-actions { justify-self: end; }
+.book-link { justify-self: auto; }
+
+.menu-carousel {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  touch-action: pan-y;
+}
+
+.menu-track {
+  display: flex;
+  cursor: grab;
+  transition: transform .55s cubic-bezier(.2, .72, .2, 1);
+}
+
+.menu-track:active { cursor: grabbing; }
+
+.menu-category-card {
+  flex: 0 0 100%;
+  min-width: 0;
+  min-height: 32rem;
+  padding: clamp(2rem, 4vw, 4.5rem) clamp(4.8rem, 7vw, 7.5rem);
+  color: var(--ink);
+  background: var(--lime);
+}
+
+.menu-category-card:nth-child(2) { background: var(--orange); }
+.menu-category-card:nth-child(3) { background: var(--violet); color: var(--cream); }
+.menu-category-card:nth-child(4) { background: var(--pink); }
+
+.menu-category-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid currentColor;
+}
+
+.menu-category-card header p {
+  margin: 0 0 .5rem;
+  font: 500 .66rem/1 "DM Mono", monospace;
+  letter-spacing: .11em;
+}
+
+.menu-category-card h3 {
+  margin: 0;
+  font: 400 clamp(2.8rem, 5vw, 5.7rem)/.78 "Archivo Black", sans-serif;
+  letter-spacing: -.08em;
+}
+
+.category-mark {
+  display: grid;
+  width: 5.5rem;
+  aspect-ratio: 1;
+  place-content: center;
+  flex: 0 0 auto;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font: 500 .65rem/1.05 "DM Mono", monospace;
+  text-align: center;
+  transform: rotate(9deg);
+}
+
+.card-dishes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2.5rem;
+}
+
+.card-dishes > div {
+  position: relative;
+  min-height: 6rem;
+  padding: 1.05rem 4.2rem 1.05rem 0;
+  border-bottom: 1px solid currentColor;
+}
+
+.card-dishes h4 {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.04em;
+}
+
+.card-dishes small {
+  display: inline-block;
+  padding: .18rem .35rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font: 500 .5rem/1 "DM Mono", monospace;
+  letter-spacing: .05em;
+  vertical-align: middle;
+}
+
+.card-dishes p {
+  max-width: 29rem;
+  margin: .5rem 0 0;
+  font-size: .94rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.card-dishes strong {
+  position: absolute;
+  top: 1.08rem;
+  right: 0;
+  font: 500 .95rem/1 "DM Mono", monospace;
+}
+
+.carousel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.carousel-counter {
+  font: 500 .68rem/1 "DM Mono", monospace;
+  letter-spacing: .08em;
+}
+
+.carousel-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--cream);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transform: translateY(-50%);
+  box-shadow: 0 5px 0 var(--ink);
+  transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.carousel-arrow-previous { left: 1.25rem; }
+.carousel-arrow-next { right: 1.25rem; }
+
+.carousel-arrow:hover,
+.carousel-arrow:focus-visible {
+  color: var(--ink);
+  background: var(--lime);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+@media (max-width: 780px) {
+  .site-header { grid-template-columns: 1fr auto auto; }
+  .header-actions { grid-column: 2; grid-row: 1; }
+  .header-actions .book-link { display: none; }
+  .menu-toggle { grid-column: 3; grid-row: 1; margin-left: .3rem; }
+  .menu-category-card { min-height: 42rem; padding: 1.5rem 3.5rem; }
+  .menu-category-card > header { margin-bottom: 1rem; }
+  .menu-category-card h3 { font-size: clamp(2.65rem, 14vw, 4rem); }
+  .category-mark { width: 4.2rem; font-size: .52rem; }
+  .card-dishes { grid-template-columns: 1fr; }
+  .card-dishes > div { min-height: 0; padding: .8rem 3.6rem .8rem 0; }
+  .card-dishes h4 { font-size: 1rem; }
+  .card-dishes p { font-size: .82rem; line-height: 1.5; }
+  .card-dishes strong { top: .85rem; font-size: .8rem; }
+  .carousel-arrow { width: 2.65rem; height: 2.65rem; font-size: 1rem; }
+  .carousel-arrow-previous { left: .35rem; }
+  .carousel-arrow-next { right: .35rem; }
+  .carousel-footer { align-items: flex-end; }
+  .menu-note { max-width: 12rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-track { transition: none; }
+}
