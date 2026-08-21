@@ -7,15 +7,14 @@ Este documento conserva la taxonomía del portafolio y funciona como referencia 
 | N.º | Categoría | Directorio | Funciones incluidas |
 | --- | --- | --- | --- |
 | 1 | **Classic Menu** | `apps/classic` | Categorías; fotografías; descripciones; precios; navegación responsive; diseño editorial. |
-| 2 | **Menú estático** | `apps/menu-estatico` | Carta de consulta directa; categorías; platillos; descripciones; precios; información esencial del restaurante. |
-| 3 | **Menú informativo** | `apps/menu-informativo` | Menú; información del restaurante; ubicación; horarios; datos de contacto; contenido complementario. |
-| 4 | **Menú interactivo** | `apps/menu-interactivo` | Interacciones para explorar platillos; fotografías; detalles desplegables; transiciones; navegación táctil. |
-| 5 | **Menú de pedidos** | `apps/menu-pedidos` | Menú; selección de platillos; personalizaciones; resumen de pedido; datos de entrega o recolección; confirmación. |
-| 6 | **Menú con reservas** | `apps/menu-reservas` | Menú; disponibilidad; fecha y hora; número de personas; formulario de reservación; confirmación. |
+| 2 | **Menú informativo** | `apps/menu-informativo` | Menú; información del restaurante; ubicación; horarios; datos de contacto; contenido complementario. |
+| 3 | **Menú interactivo** | `apps/menu-interactivo` | Interacciones para explorar platillos; fotografías; detalles desplegables; transiciones; navegación táctil. |
+| 4 | **Menú de pedidos** | `apps/menu-pedidos` | Menú; selección de platillos; personalizaciones; resumen de pedido; datos de entrega o recolección; confirmación. |
+| 5 | **Menú con reservas** | `apps/menu-reservas` | Menú; disponibilidad; fecha y hora; número de personas; formulario de reservación; confirmación. |
 
 ### Cambio registrado
 
-La taxonomía vigente se actualizó para reflejar las categorías activas del repositorio. Se incorporaron **Menú estático**, **Menú informativo**, **Menú interactivo**, **Menú de pedidos** y **Menú con reservas** junto con **Classic Menu**. La landing no se considera una categoría de menú y `apps/borrador` se excluye expresamente.
+La taxonomía vigente se ajustó a cinco categorías activas: **Classic Menu**, **Menú informativo**, **Menú interactivo**, **Menú de pedidos** y **Menú con reservas**. Se retiró **Menú estático** y su directorio reservado. La landing no se considera una categoría de menú y `apps/borrador` se excluye expresamente.
 
 ## Versión anterior — 2026-08-15
 

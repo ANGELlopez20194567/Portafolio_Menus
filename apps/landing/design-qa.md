@@ -2,7 +2,7 @@
 
 - `C:\Users\DLopez\AppData\Local\Temp\codex-clipboard-1366b3f8-4072-4335-8030-5fa9bed02306.png`
 - Source pixels: 1120 × 796 at 1× density.
-- Intended state: desktop, first card “Classic Menu” selected (`01 / 06`).
+- Intended state: desktop, first card “Classic Menu” selected (`01 / 05`).
 
 **Implementation evidence**
 
@@ -19,7 +19,7 @@
 - Typography: Anton reproduces the condensed display hierarchy; Inter supplies the supporting text. Weight, wrapping and hierarchy match the reference closely.
 - Spacing and layout: the fixed cream panel, outer magenta frame, rounded corners and right-hand content proportion preserve the source composition. The mobile layout intentionally compresses the panel while keeping it static.
 - Colors and tokens: cream, black and electric purple map directly to reusable CSS variables. The subtle dotted texture approximates the visible grain without competing with the content.
-- Image quality: six original 1120 × 1400 PNG assets use a consistent saturated, flash-lit editorial direction. Crops remain sharp and use `object-fit: cover`.
+- Image quality: five displayed PNG assets use a consistent saturated, flash-lit editorial direction. Crops remain sharp and use `object-fit: cover`.
 - Copy: all product-facing copy is intentional. “Izquierda columna”, “Derecha columna” and the Figma developer badge were correctly identified as annotations and omitted.
 
 **Interaction checks**

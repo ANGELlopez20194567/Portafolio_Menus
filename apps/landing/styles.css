@@ -27,7 +27,7 @@ body { min-width: 320px; color: var(--ink); background: var(--paper); }
 h1 { margin: 0; font-family: "Anton", Impact, sans-serif; font-size: 6rem; font-weight: 400; line-height: .93; letter-spacing: -.005em; text-transform: uppercase; }
 .title-group p { margin: 1.3542rem 0 0; color: var(--muted); font-size: 1.0417rem; font-weight: 500; line-height: 1.5; }
 .project-meta { margin: auto 0 0; padding-top: 2.5rem; }
-.counter { margin: 0; color: var(--purple); font-family: "DM Mono", monospace; font-size: 1.5625rem; font-weight: 500; letter-spacing: -.05em; }
+.counter { margin: 0; color: var(--purple); font-family: "Sue Ellen Francisco", cursive; font-size: 1.5625rem; font-weight: 500; letter-spacing: -.05em; }
 .project-type { margin: .5208rem 0 1.4583rem; color: var(--muted); font-family: "DM Mono", monospace; font-size: .8333rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
 .quote-button { display: inline-flex; align-items: center; gap: .625rem; padding: .7813rem 1.1458rem; border: 1px solid var(--purple); border-radius: 999px; color: white; background: var(--purple); font-family: "DM Mono", monospace; font-size: .7292rem; font-weight: 500; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; box-shadow: 0 .4167rem 1.25rem rgba(84, 18, 103, .2); transition: gap .2s ease, color .2s ease, background-color .2s ease, transform .2s ease; }
 .quote-button:hover, .quote-button:focus-visible { gap: .9375rem; color: var(--purple); background: var(--panel); transform: translateY(-.1042rem); }
@@ -66,7 +66,8 @@ h1 { margin: 0; font-family: "Anton", Impact, sans-serif; font-size: 6rem; font-
   .brand, .intro-footer { grid-column: 1 / -1; }
   .title-group { margin: 0; }
   h1 { font-size: clamp(3.5rem, 15vw, 5.3rem); }
-  .title-group p, .project-type, .quote-button { display: none; }
+  .title-group p { display: block; max-width: 19rem; margin-top: .75rem; font-size: .875rem; line-height: 1.45; }
+  .project-type, .quote-button { display: none; }
   .project-meta { margin: 0; padding: 0; text-align: right; }
   .intro-footer { margin: 0; }
   .project-copy { left: 22px; bottom: 24px; }

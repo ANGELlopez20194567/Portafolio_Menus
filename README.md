@@ -32,13 +32,13 @@ La landing se encuentra en `apps/landing/index.html`. Las secciones SEO están i
 | Descripción SEO | `<meta name="description">` dentro de `<head>` | Explica el beneficio de la página en una frase natural. Debe corresponder al contenido visible. |
 | Instrucción de indexación | `<meta name="robots">` dentro de `<head>` | Mantén `index, follow` en páginas públicas que deban aparecer en buscadores. |
 | Encabezado principal | `<h1 id="menu-title">` dentro de `.menu-header` | Usa un único `h1` que explique el propósito de la página con la frase clave principal. |
-| Sección de categorías | `.menu-grid` | Agrupa las seis soluciones vigentes y conecta su título con la sección mediante `aria-labelledby`. |
+| Sección de categorías | `.menu-grid` | Agrupa las cinco soluciones vigentes y conecta su título con la sección mediante `aria-labelledby`. |
 | Contenido independiente | Tarjetas `.menu-card` con `<article>` | Cada categoría se entiende por sí misma e incluye nombre, descripción y funciones. |
 | Texto alternativo | `aria-label` en elementos gráficos y enlaces | Describe el propósito cuando la información no está disponible como texto visible. |
 
 ## Palabras clave: cómo usarlas
 
-La frase principal actual es **“menús digitales para restaurantes”**. Las seis categorías de producto vigentes son **Classic Menu**, **Interactive Menu**, **Smart Menu**, **Customizable Menu**, **Menu + Reservations** y **Restaurant Experience**. También pueden emplearse variaciones naturales como “carta digital”, “menú interactivo”, “menú inteligente”, “menú personalizable” y “menú con reservaciones” cuando aporten contexto.
+La frase principal actual es **“menús digitales para restaurantes”**. Las cinco categorías de producto vigentes son **Classic Menu**, **Menú informativo**, **Menú interactivo**, **Menú de pedidos** y **Menú con reservas**. También pueden emplearse variaciones naturales como “carta digital”, “menú interactivo”, “menú de pedidos” y “menú con reservaciones” cuando aporten contexto.
 
 Buenas prácticas:
 

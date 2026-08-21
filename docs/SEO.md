@@ -13,12 +13,12 @@ La página está en `apps/landing/index.html`.
 | Descripción | `<meta name="description">` dentro de `<head>` | Resume el beneficio principal de forma natural y coherente con el contenido. |
 | Robots | `<meta name="robots">` dentro de `<head>` | Usa `index, follow` únicamente en páginas públicas que deban aparecer en buscadores. |
 | Título principal | `<h1 id="menu-title">` dentro de `.menu-header` | Debe haber solo un `h1` y explicar el objetivo de la página. |
-| Sección de categorías | `.menu-grid` | Presenta las seis soluciones vigentes bajo el título principal. |
+| Sección de categorías | `.menu-grid` | Presenta las cinco soluciones vigentes bajo el título principal. |
 | Bloques de contenido | `<article class="menu-card">` | Cada categoría tiene un nombre único, una descripción y su lista de funciones. |
 
 ## Palabras clave
 
-La palabra clave principal de esta landing es **“menús digitales para restaurantes”**. Las categorías de producto se nombran **Classic Menu**, **Interactive Menu**, **Smart Menu**, **Customizable Menu**, **Menu + Reservations** y **Restaurant Experience**. Sus variaciones naturales en español incluyen “carta digital”, “menú interactivo”, “menú inteligente”, “menú personalizable” y “menú con reservaciones”.
+La palabra clave principal de esta landing es **“menús digitales para restaurantes”**. Las categorías de producto se nombran **Classic Menu**, **Menú informativo**, **Menú interactivo**, **Menú de pedidos** y **Menú con reservas**. Sus variaciones naturales en español incluyen “carta digital”, “menú informativo”, “menú interactivo”, “menú de pedidos” y “menú con reservaciones”.
 
 Úsalas en el título, la metadescripción, el `h1`, algunos `h2` y el texto visible solo cuando describan de forma natural el servicio. Todas las partes de la página deben hablar del mismo tema.
 
