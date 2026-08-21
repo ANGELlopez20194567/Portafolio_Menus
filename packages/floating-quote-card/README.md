@@ -7,9 +7,18 @@ Componente reutilizable para todas las demos del portafolio. Permanece visible d
 <quote-card
   title="Classic Menu"
   description="Descripción comercial"
-  features="Categorías,Precios,Diseño responsive"
+  includes="Categorías,Precios,Diseño responsive"
+  ideal-for="Restaurantes con una carta breve y visual"
   href="#cotizar">
 </quote-card>
 ```
 
-Los atributos `label`, `title`, `description`, `features`, `cta` y `href` permiten adaptar el contenido sin duplicar estilos ni comportamiento.
+## Contenido obligatorio para nuevas demos
+
+Cada tarjeta debe declarar `label`, `title`, `description`, `includes`, `ideal-for`, `cta` y `href`.
+
+- `description`: explica de forma breve el valor del plan o menú.
+- `includes`: lista separada por comas de las funciones o entregables del plan.
+- `ideal-for`: describe los tipos de restaurante para los que resulta adecuado.
+
+El atributo anterior `features` sigue funcionando como alternativa de compatibilidad, pero las nuevas demos deben usar `includes`.

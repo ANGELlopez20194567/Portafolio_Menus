@@ -1,8 +1,23 @@
 # Historial de categorías de menú
 
-Este documento conserva la taxonomía del portafolio y funciona como referencia para redactar fichas técnicas futuras. Los nombres y alcances vigentes deben copiarse desde la versión más reciente de este historial.
+Este documento conserva la taxonomía del portafolio y funciona como referencia para redactar fichas técnicas futuras. Los nombres y alcances vigentes deben copiarse desde la versión más reciente de este historial. La carpeta `apps/borrador` no forma parte de esta taxonomía.
 
-## Versión vigente — 2026-08-15
+## Versión vigente — 2026-08-21
+
+| N.º | Categoría | Directorio | Funciones incluidas |
+| --- | --- | --- | --- |
+| 1 | **Classic Menu** | `apps/classic` | Categorías; fotografías; descripciones; precios; navegación responsive; diseño editorial. |
+| 2 | **Menú estático** | `apps/menu-estatico` | Carta de consulta directa; categorías; platillos; descripciones; precios; información esencial del restaurante. |
+| 3 | **Menú informativo** | `apps/menu-informativo` | Menú; información del restaurante; ubicación; horarios; datos de contacto; contenido complementario. |
+| 4 | **Menú interactivo** | `apps/menu-interactivo` | Interacciones para explorar platillos; fotografías; detalles desplegables; transiciones; navegación táctil. |
+| 5 | **Menú de pedidos** | `apps/menu-pedidos` | Menú; selección de platillos; personalizaciones; resumen de pedido; datos de entrega o recolección; confirmación. |
+| 6 | **Menú con reservas** | `apps/menu-reservas` | Menú; disponibilidad; fecha y hora; número de personas; formulario de reservación; confirmación. |
+
+### Cambio registrado
+
+La taxonomía vigente se actualizó para reflejar las categorías activas del repositorio. Se incorporaron **Menú estático**, **Menú informativo**, **Menú interactivo**, **Menú de pedidos** y **Menú con reservas** junto con **Classic Menu**. La landing no se considera una categoría de menú y `apps/borrador` se excluye expresamente.
+
+## Versión anterior — 2026-08-15
 
 | N.º | Categoría | Funciones incluidas |
 | --- | --- | --- |
