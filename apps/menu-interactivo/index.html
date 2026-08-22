@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Burger Club 2087: menú interactivo de hamburguesas de autor.">
+  <title>Burger Club 2087 — Menú interactivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../packages/back-link/back-link.css">
+  <script type="module" src="../../packages/floating-quote-card/quote-card.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#menu">Ir al menú</a>
+  <header class="site-header"><a class="brand" href="#inicio">BURGER CLUB <span>2087</span></a><nav aria-label="Navegación"><a href="#menu">Menú</a><a href="#combos">Combos</a></nav><div class="header-actions"><a class="back-link" href="../landing/" aria-label="Volver al portafolio RayelTech"><span class="back-label">Volver a RayelTech</span><span class="back-arrow" aria-hidden="true">↖</span></a></div></header>
+  <main id="inicio">
+    <section class="hero"><div class="hero-copy"><p class="eyebrow">HECHAS PARA ANTOJARSE · DESDE 2087</p><h1>BURGER<br><em>CLUB</em></h1><p>Hamburguesas de autor, combinaciones sin timidez y todo lo que necesitas para armar la mesa.</p><a class="hero-link" href="#menu">EXPLORA EL MENÚ <span aria-hidden="true">↓</span></a></div><div class="hero-art" aria-hidden="true"><svg viewBox="0 0 420 420"><path d="M76 219c0-68 55-123 123-123 65 0 118 50 123 113 40 9 70 45 70 88 0 49-40 89-89 89H145c-57 0-103-46-103-103 0-28 12-53 34-64Z"/><path d="M88 232h246M116 272h190M139 313h144"/></svg><span>100%<br>ANTOJO</span></div></section>
+    <svg class="burger-float" viewBox="0 0 540 370" role="img" aria-label="Hamburguesa ilustrada con capas que se separan al pasar el cursor"><g class="burger-bun-top"><path d="M95 130C100 52 170 24 270 24S440 52 445 130Z" fill="#ffdf39" stroke="#16121e" stroke-width="10"/><circle cx="195" cy="78" r="6" fill="#16121e"/><circle cx="264" cy="59" r="6" fill="#16121e"/><circle cx="337" cy="82" r="6" fill="#16121e"/></g><path class="burger-cheese" d="M92 147h356l-45 53-61-25-65 31-68-31-65 25Z" fill="#fa237d" stroke="#16121e" stroke-width="10"/><path class="burger-lettuce" d="M88 196c29-24 62 22 95-2 32-24 55 22 89-3 35-26 60 24 95-1 34-24 56 14 87-2v36H88Z" fill="#29dfe3" stroke="#16121e" stroke-width="10"/><path class="burger-patty" d="M111 231c10-23 49-26 78-14 34-16 74-13 105 1 33-16 91-9 112 13l-11 39H121Z" fill="#7f3f25" stroke="#16121e" stroke-width="10"/><path class="burger-bun-bottom" d="M116 278h308l-22 52H138Z" fill="#ffdf39" stroke="#16121e" stroke-width="10"/></svg>
+    <section class="menu-section" id="menu"><div class="section-heading"><p class="eyebrow">ELIGE TU HAMBURGUESA</p><h2>TOCA UNA<br><em>Y ÁBRELA.</em></h2><p>Cada hamburguesa es una puerta: mira sus ingredientes y las combinaciones que van mejor con ella.</p></div><div class="category-tabs" id="category-tabs" aria-label="Categorías de hamburguesas"></div><div class="burger-grid" id="burger-grid" aria-live="polite"></div></section>
+    <section class="extras-section" id="combos"><div class="extras-intro"><p class="eyebrow">EL RESTO DEL CLUB</p><h2>ELIGE TU<br><em>ESCUDERÍA.</em></h2><p>Las guarniciones, bebidas y postres que completan tu orden.</p></div><div class="extras-grid" id="extras-grid"></div></section>
+  </main>
+  <footer><p>BURGER CLUB 2087 · CIUDAD DE MÉXICO</p><p>Precios en MXN · Todas las burgers incluyen papas de la casa.</p></footer>
+  <dialog class="dish-dialog" id="dish-dialog" aria-labelledby="dialog-name"><button class="dialog-close" type="button" aria-label="Cerrar detalle">×</button><div class="dialog-media"><img id="dialog-image" src="" alt=""></div><div class="dialog-copy"><p class="eyebrow" id="dialog-category"></p><div class="dialog-heading"><h2 id="dialog-name"></h2><strong id="dialog-price"></strong></div><p class="dialog-description" id="dialog-description"></p><div class="dialog-group"><h3>INGREDIENTES</h3><ul id="dialog-ingredients"></ul></div><div class="dialog-group"><h3>LE VA BIEN CON</h3><div class="pairings" id="dialog-pairings"></div></div><p class="portion" id="dialog-portion"></p></div></dialog>
+  <quote-card label="MENÚ INTERACTIVO" title="Haz que cada antojo tenga una historia" description="Una carta digital que invita a descubrir ingredientes, combinaciones y detalles de cada platillo con interacción táctil." includes="Exploración por platillo,Fotografías,Detalles desplegables,Transiciones,Navegación táctil,Diseño responsive" ideal-for="Hamburgueserías, dark kitchens y restaurantes con platillos de autor que quieren convertir curiosidad en antojo." cta="Cotizar menú" href="mailto:hola@ejemplo.com?subject=Cotización%20Menú%20Interactivo"></quote-card>
+</body>
+</html>
