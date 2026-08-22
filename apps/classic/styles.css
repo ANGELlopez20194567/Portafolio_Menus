@@ -9,4 +9,4 @@
 .category-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .category-photo:hover img{transform:scale(1.035)}
 .menu-section:nth-child(odd) .category-gallery{order:2}.menu-section:nth-child(odd) .dishes{order:1}.menu-section:nth-child(even) .category-gallery{order:1}.menu-section:nth-child(even) .dishes{order:2}
-@media(max-width:760px){.section-content{grid-template-columns:1fr;gap:30px}.category-gallery{gap:12px}.category-photo-1{aspect-ratio:4/5}.category-photo-2{aspect-ratio:3/4;transform:translateY(22px)}.menu-section:nth-child(n) .category-gallery{order:1}.menu-section:nth-child(n) .dishes{order:2}}
+@media(max-width:760px){.section-content{grid-template-columns:1fr;gap:30px}.category-gallery{gap:12px}.category-photo-2{transform:translateY(22px)}.menu-section:nth-child(n) .category-gallery{order:1}.menu-section:nth-child(n) .dishes{order:2}}

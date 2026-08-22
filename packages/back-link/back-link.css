@@ -48,7 +48,7 @@
   background: #fff;
 }
 
-@media (max-width: 1100px) and (min-width: 781px) {
+@media (max-width: 1100px) {
   .back-label { display: none; }
   .back-link { width: 38px; height: 38px; justify-content: center; padding: 0; }
   .back-arrow { width: auto; height: auto; color: #541267; background: transparent; font-size: 16px; }
@@ -58,9 +58,4 @@
 
 @media (max-width: 780px) {
   .header-actions { gap: 8px; }
-  .back-label { display: none; }
-  .back-link { width: 38px; height: 38px; justify-content: center; padding: 0; }
-  .back-arrow { width: auto; height: auto; color: #541267; background: transparent; font-size: 16px; }
-  .back-link:hover .back-arrow,
-  .back-link:focus-visible .back-arrow { color: #fff; background: transparent; }
 }

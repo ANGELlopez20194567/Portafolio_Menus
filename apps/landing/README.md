@@ -2,6 +2,8 @@
 
 Portada pública del portafolio de experiencias digitales para restaurantes.
 
+La estructura visual compartida con `apps/borrador` vive en `packages/portfolio-shell/portfolio-shell.css`; `styles.css` queda reservado para ajustes exclusivos de esta landing.
+
 ## Diseño actual
 
 Portafolio editorial de RayelTech con panel de presentación fijo y una galería vertical independiente. La galería usa cinco imágenes generadas para el proyecto, navegación con `scroll-snap` y un contador sincronizado mediante `IntersectionObserver`.
