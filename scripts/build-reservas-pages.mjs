@@ -1,7 +1,7 @@
 import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { relative, resolve, sep } from 'node:path';
 
-const sourceDirectory = resolve('apps/reservas-estatico');
+const repositoryDirectory = resolve('.');
 const outputDirectory = resolve(process.env.RESERVAS_OUTPUT_DIR || '_site');
 const requiredVariables = [
   'SUPABASE_URL',
@@ -26,22 +26,29 @@ if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
   throw new Error('RESTAURANT_ID debe ser un UUID válido.');
 }
 
-const publicFiles = [
-  'index.html',
-  'admin.html',
-  'styles.css',
-  'supabase.js',
-  'comensal.js',
-  'admin.js',
-  'assets'
-];
+const publicDirectories = ['apps', 'assets'];
+const excludedPaths = new Set([
+  'apps/reservas-estatico/.gitignore',
+  'apps/reservas-estatico/ACCESO_ADMIN.md',
+  'apps/reservas-estatico/config.example.js',
+  'apps/reservas-estatico/config.local.js'
+]);
+
+function shouldPublish(sourcePath) {
+  const projectPath = relative(repositoryDirectory, sourcePath).split(sep).join('/');
+  const segments = projectPath.split('/');
+  return !excludedPaths.has(projectPath)
+    && !segments.includes('.vite')
+    && !segments.includes('node_modules');
+}
 
 await rm(outputDirectory, { recursive: true, force: true });
 await mkdir(outputDirectory, { recursive: true });
 
-for (const file of publicFiles) {
-  await cp(resolve(sourceDirectory, file), resolve(outputDirectory, file), {
-    recursive: true
+for (const directory of publicDirectories) {
+  await cp(resolve(repositoryDirectory, directory), resolve(outputDirectory, directory), {
+    recursive: true,
+    filter: shouldPublish
   });
 }
 
@@ -52,9 +59,9 @@ const publicConfig = {
 };
 
 await writeFile(
-  resolve(outputDirectory, 'config.local.js'),
+  resolve(outputDirectory, 'apps/reservas-estatico/config.local.js'),
   `window.SUPABASE_CONFIG = ${JSON.stringify(publicConfig, null, 2)};\n`,
   'utf8'
 );
 
-console.log(`Sitio de reservas preparado en ${outputDirectory}`);
+console.log(`Portafolio con reservas preparado en ${outputDirectory}`);

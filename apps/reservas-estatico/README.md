@@ -61,7 +61,8 @@ Abrir los archivos directamente con `file://` no es recomendable porque algunos 
 
 ## Publicar en GitHub Pages
 
-El workflow `.github/workflows/reservas-pages.yml` publica únicamente esta aplicación.
+El workflow `.github/workflows/reservas-pages.yml` publica las carpetas públicas `apps`
+y `assets` del portafolio, e inyecta la configuración de esta aplicación sin versionarla.
 Antes de ejecutarlo, crea estas variables del repositorio en **Settings → Secrets and
 variables → Actions → Variables**:
 
@@ -72,6 +73,9 @@ variables → Actions → Variables**:
 Después selecciona **GitHub Actions** como origen en **Settings → Pages → Build and
 deployment → Source**. El workflow genera `config.local.js` dentro del artefacto público;
 el archivo local continúa excluido de Git. No uses una secret key ni `service_role`.
+
+La aplicación conserva su ruta dentro del portafolio:
+`/Portafolio_Menus/apps/reservas-estatico/`.
 
 ## Acceso público y privado
 
