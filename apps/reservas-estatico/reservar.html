@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reserva una mesa en SAKURA Cocina Japonesa.">
+  <title>Haz tu reserva · SAKURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260828a">
+  <link rel="stylesheet" href="sakura.css?v=20260828e">
+  <link rel="stylesheet" href="../../packages/back-link/back-link.css">
+</head>
+<body class="guest-body sakura-site reservation-page">
+  <header class="guest-header sakura-header">
+    <a class="wordmark" href="index.html" aria-label="SAKURA Cocina Japonesa, ir al menú">
+      <span class="brand-mon" aria-hidden="true">さ</span>
+      <span class="brand-name">SAKURA <small>COCINA JAPONESA</small></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="index.html#carta">Menú</a>
+      <button class="link-button" id="open-lookup" type="button">Consultar reserva</button>
+      <a class="back-link" href="../landing/" aria-label="Volver al portafolio RayelTech"><span class="back-label">Volver a RayelTech</span><span class="back-arrow" aria-hidden="true">↖</span></a>
+      <a class="reservation-nav" href="#reservar"><small>Disponibilidad en línea</small><strong>Haz tu reserva</strong></a>
+    </nav>
+  </header>
+
+  <section class="lookup-bar is-hidden" id="lookup-bar">
+    <form id="lookup-form">
+      <strong>Consulta tu reserva</strong>
+      <input id="lookup-code" placeholder="Código de reservación" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+      <button type="submit">Buscar reserva</button>
+    </form>
+    <p id="lookup-result"></p>
+  </section>
+
+  <main>
+    <section class="reservation-stage guest-hero" id="reservar" aria-labelledby="card-title">
+      <div class="reservation-stage-copy">
+        <p class="sakura-kicker">Reservas</p>
+        <h2>Tu mesa<br>te espera.</h2>
+        <p>Elige la fecha, encuentra tu horario y recibe tu comprobante en unos minutos.</p>
+        <a class="back-to-menu" href="index.html#carta">← Volver a la carta</a>
+        <span lang="ja" aria-hidden="true">よやく</span>
+      </div>
+
+      <section class="booking-card">
+        <header class="card-header">
+          <div>
+            <p class="step-label" id="step-label">Reservación · Paso 01 de 03</p>
+            <h1 id="card-title">Elige el día de tu visita</h1>
+            <p class="card-intro" id="card-intro">Selecciona una fecha disponible; después podrás elegir comensales, salón y horario.</p>
+          </div>
+        </header>
+
+        <section id="booking-step">
+          <div class="guest-calendar" aria-label="Calendario para elegir la fecha de la reserva">
+            <div class="guest-calendar-head">
+              <button id="calendar-previous" type="button" aria-label="Mes anterior">Anterior</button>
+              <strong id="calendar-month"></strong>
+              <button id="calendar-next" type="button" aria-label="Mes siguiente">Siguiente</button>
+            </div>
+            <div class="guest-calendar-weekdays" aria-hidden="true">
+              <span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span>
+            </div>
+            <div class="guest-calendar-grid" id="guest-calendar-grid"></div>
+            <input id="date" type="hidden" required>
+          </div>
+
+          <div class="booking-options is-hidden" id="booking-options">
+            <div class="selected-date-banner">
+              <span lang="ja" aria-hidden="true">ひ</span>
+              <div><small>Fecha seleccionada</small><strong id="selected-booking-date"></strong></div>
+              <button id="change-date" type="button">Cambiar fecha</button>
+            </div>
+            <div class="booking-fields">
+              <label><span>Comensales</span><select id="party-size"></select></label>
+              <label><span>Ambiente</span><select id="section"><option value="">La mejor disponible</option></select></label>
+            </div>
+            <div class="slot-heading"><span>Horarios disponibles</span><span id="party-label">2 comensales</span></div>
+            <div class="time-slots" id="time-slots"></div>
+            <p class="form-message" id="booking-message"></p>
+            <button class="primary-button" id="continue-button" type="button" disabled>Continuar</button>
+          </div>
+        </section>
+
+        <form class="details-form is-hidden" id="details-form">
+          <div class="selection-summary"><strong id="selection-date"></strong><span id="selection-detail"></span></div>
+          <label><span>Nombre completo</span><input id="guest-name" maxlength="120" autocomplete="name" required></label>
+          <label><span>Correo electrónico</span><input id="guest-email" type="email" maxlength="320" autocomplete="email" required></label>
+          <label><span>Teléfono</span><input id="guest-phone" type="tel" maxlength="30" autocomplete="tel"></label>
+          <label><span>Solicitudes especiales</span><textarea id="guest-notes" rows="3" maxlength="500" placeholder="Preferencias de mesa o servicio"></textarea><small class="form-help">No incluyas información médica ni otros datos sensibles.</small></label>
+          <label class="check-label"><input id="privacy" type="checkbox" required><span>He leído el <a href="legales.html#privacidad" target="_blank" rel="noopener">aviso de privacidad</a> y acepto el uso de mis datos para gestionar esta reserva.</span></label>
+          <p class="form-message" id="details-message"></p>
+          <div class="form-actions"><button class="secondary-button" id="back-button" type="button">Volver</button><button class="primary-button" type="submit">Confirmar reserva</button></div>
+        </form>
+
+        <section class="confirmation is-hidden" id="confirmation">
+          <article class="confirmation-card">
+            <i lang="ja">さ</i><p>Reserva confirmada</p><h3 id="confirmed-name"></h3>
+            <strong id="confirmed-date"></strong><span id="confirmed-detail"></span>
+            <div id="confirmed-code"></div>
+          </article>
+          <p id="email-note"></p>
+          <button class="primary-button" id="download-card" type="button">Guardar tarjeta</button>
+          <button class="link-button restart-button" id="restart-button" type="button">Hacer otra reserva</button>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <footer class="sakura-footer"><strong>SAKURA</strong><p>Cocina japonesa · México</p><nav aria-label="Información legal"><a href="legales.html">Legal y privacidad</a><a href="index.html#carta">Ver la carta</a></nav></footer>
+
+  <script src="config.local.js?v=20260825c"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js?v=20260825d"></script>
+  <script src="comensal.js?v=20260828b"></script>
+</body>
+</html>

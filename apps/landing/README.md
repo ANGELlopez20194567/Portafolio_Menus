@@ -6,11 +6,11 @@ La estructura visual compartida con `apps/borrador` vive en `packages/portfolio-
 
 ## Diseño actual
 
-Portafolio editorial de RayelTech con panel de presentación fijo y una galería vertical independiente. La galería usa cinco imágenes generadas para el proyecto, navegación con `scroll-snap` y un contador sincronizado mediante `IntersectionObserver`.
+Portafolio editorial de RayelTech con panel de presentación fijo y una galería vertical independiente. La galería usa seis imágenes, navegación con `scroll-snap` y un contador sincronizado mediante `IntersectionObserver`.
 
 En móvil, el encabezado se comprime y permanece visible mientras la galería conserva el desplazamiento vertical por tarjetas. Las anotaciones de Figma “Izquierda columna” y “Derecha columna” no forman parte de la interfaz.
 
-La galería también incluye controles anterior/siguiente, enlaces clicables, una invitación contextual para puntero y navegación con teclado. La primera tarjeta conecta con el ejemplo terminado de Classic Menu en `apps/classic`.
+La galería también incluye controles anterior/siguiente, enlaces clicables, una invitación contextual para puntero y navegación con teclado. La primera tarjeta conecta con el ejemplo terminado de Classic Menu en `apps/classic`; la tarjeta `Reservatios sistem` abre directamente `apps/reservas-estatico/reservar.html` y utiliza la captura real `assets/reservatios-sistem-calendar.png`.
 
 ## Escala responsive
 

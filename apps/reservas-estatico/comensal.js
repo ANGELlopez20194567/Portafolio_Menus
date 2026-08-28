@@ -1,6 +1,6 @@
 (function () {
   const api = window.MesaSupabase;
-  const reservationArt = new Image(); reservationArt.src = 'assets/feudal-landscape.png';
+  const reservationArt = new Image(); reservationArt.src = 'assets/sakura-cloudscape.png';
   const elements = {
     date: document.querySelector('#date'), party: document.querySelector('#party-size'), section: document.querySelector('#section'),
     slots: document.querySelector('#time-slots'), partyLabel: document.querySelector('#party-label'), message: document.querySelector('#booking-message'),
@@ -12,7 +12,7 @@
     nextMonth: document.querySelector('#calendar-next'), bookingOptions: document.querySelector('#booking-options'),
     selectedBookingDate: document.querySelector('#selected-booking-date')
   };
-  const demoConfig = { name: 'Restaurante MESA', maximum_party_size: 12, open_weekdays: [0, 2, 3, 4, 5, 6], closed_dates: [], sections: [{ publicId: 'interior', name: 'Interior' }, { publicId: 'terraza', name: 'Terraza' }] };
+  const demoConfig = { name: 'Restaurante SAKURA', maximum_party_size: 12, open_weekdays: [0, 2, 3, 4, 5, 6], closed_dates: [], sections: [{ publicId: 'interior', name: 'Interior' }, { publicId: 'terraza', name: 'Terraza' }] };
   const today = new Date();
   const state = { restaurantId: null, config: demoConfig, demo: true, selectedSlot: null, result: null, calendarView: new Date(today.getFullYear(), today.getMonth(), 1) };
 
@@ -79,6 +79,14 @@
       button.addEventListener('click', () => selectDate(value));
       elements.calendarGrid.append(button);
     }
+
+    const renderedCells = firstWeekday + daysInMonth;
+    for (let index = renderedCells; index < 42; index += 1) {
+      const spacer = document.createElement('span');
+      spacer.className = 'guest-calendar-empty';
+      spacer.setAttribute('aria-hidden', 'true');
+      elements.calendarGrid.append(spacer);
+    }
   }
 
   async function selectDate(value) {
@@ -126,7 +134,7 @@
     if (!slots.length) { elements.slots.innerHTML = '<p class="empty-inline">No quedan mesas para esta selección.</p>'; return; }
     slots.forEach((slot) => {
       const button = document.createElement('button'); button.type = 'button'; button.textContent = formatTime(slot.starts_at);
-      button.addEventListener('click', () => { elements.slots.querySelectorAll('button').forEach((item) => item.classList.remove('is-selected')); button.classList.add('is-selected'); state.selectedSlot = slot; elements.continueButton.disabled = false; elements.continueButton.firstChild.textContent = `Continuar con ${formatTime(slot.starts_at)} `; });
+      button.addEventListener('click', () => { elements.slots.querySelectorAll('button').forEach((item) => item.classList.remove('is-selected')); button.classList.add('is-selected'); state.selectedSlot = slot; elements.continueButton.disabled = false; elements.continueButton.textContent = `Continuar · ${formatTime(slot.starts_at)}`; });
       elements.slots.append(button);
     });
   }
@@ -149,7 +157,7 @@
     const submit = elements.detailsForm.querySelector('[type="submit"]'); submit.disabled = true; setMessage(document.querySelector('#details-message'), 'Confirmando…');
     const values = { restaurantId: state.restaurantId, startsAt: state.selectedSlot.starts_at, partySize: Number(elements.party.value), sectionId: elements.section.value, name: document.querySelector('#guest-name').value.trim(), email: document.querySelector('#guest-email').value.trim(), phone: document.querySelector('#guest-phone').value.trim(), notes: document.querySelector('#guest-notes').value.trim() };
     try {
-      state.result = state.demo ? { reservation_code: `MESA-${Math.random().toString(36).slice(2, 8).toUpperCase()}`, lookup_token: crypto.randomUUID(), starts_at: values.startsAt, status: 'confirmed' } : await api.createReservation(values);
+      state.result = state.demo ? { reservation_code: `SAKURA-${Math.random().toString(36).slice(2, 8).toUpperCase()}`, lookup_token: crypto.randomUUID(), starts_at: values.startsAt, status: 'confirmed' } : await api.createReservation(values);
       state.result.name = values.name; state.result.email = values.email; state.result.partySize = values.partySize; state.result.sectionName = elements.section.selectedOptions[0].textContent;
       showConfirmation();
     } catch (error) { setMessage(document.querySelector('#details-message'), error.message, true); submit.disabled = false; }
@@ -171,18 +179,32 @@
       const scale = Math.max(canvas.width / reservationArt.naturalWidth, canvas.height / reservationArt.naturalHeight);
       const width = reservationArt.naturalWidth * scale; const height = reservationArt.naturalHeight * scale;
       context.drawImage(reservationArt, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
-    } else { context.fillStyle = '#082e45'; context.fillRect(0, 0, canvas.width, canvas.height); }
+    } else { context.fillStyle = '#082f49'; context.fillRect(0, 0, canvas.width, canvas.height); }
 
-    const shade = context.createLinearGradient(0, 0, 1200, 0); shade.addColorStop(0, 'rgba(7,28,39,.2)'); shade.addColorStop(.62, 'rgba(7,28,39,.08)'); shade.addColorStop(1, 'rgba(7,28,39,.68)'); context.fillStyle = shade; context.fillRect(0, 0, 1200, 675);
-    context.fillStyle = 'rgba(244,226,183,.95)'; context.fillRect(46, 43, 716, 589); context.strokeStyle = '#d4a72c'; context.lineWidth = 3; context.strokeRect(58, 55, 692, 565);
-    context.fillStyle = '#b52323'; context.fillRect(46, 43, 13, 589); context.fillStyle = '#082e45'; context.fillRect(59, 55, 691, 10);
-    context.strokeStyle = '#b52323'; context.lineWidth = 2; context.beginPath(); context.moveTo(92, 137); context.lineTo(716, 137); context.stroke();
-    context.fillStyle = '#082e45'; context.font = '900 28px Arial'; context.fillText('MESA', 92, 103); context.fillStyle = '#b52323'; context.font = '700 16px Arial'; context.fillText('RESERVA CONFIRMADA', 92, 126);
-    context.fillStyle = '#171411'; context.font = '52px Georgia'; context.fillText(String(state.result.name).slice(0, 25), 92, 218);
-    context.fillStyle = '#665536'; context.font = '20px Arial'; context.fillText('FECHA Y HORA', 92, 281); context.fillStyle = '#171411'; context.font = '30px Georgia'; context.fillText(formatDate(state.result.starts_at), 92, 322);
-    context.fillStyle = '#665536'; context.font = '20px Arial'; context.fillText('VISITA', 92, 380); context.fillStyle = '#171411'; context.font = '28px Georgia'; context.fillText(`${state.result.partySize} personas · ${state.result.sectionName}`, 92, 421);
-    context.fillStyle = '#b52323'; context.fillRect(92, 492, 460, 74); context.fillStyle = '#fff6df'; context.font = '700 17px Arial'; context.fillText('CÓDIGO DE RESERVA', 116, 519); context.font = '900 27px Arial'; context.fillText(state.result.reservation_code, 116, 551);
-    context.fillStyle = '#d4a72c'; context.beginPath(); context.arc(1041, 530, 70, 0, Math.PI * 2); context.fill(); context.fillStyle = '#b52323'; context.beginPath(); context.arc(1041, 530, 58, 0, Math.PI * 2); context.fill(); context.fillStyle = '#f8e8bd'; context.font = '42px Georgia'; context.textAlign = 'center'; context.fillText('間', 1041, 546); context.textAlign = 'left';
+    context.fillStyle = 'rgba(5,36,56,.36)'; context.fillRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = 'rgba(251,247,237,.96)'; context.fillRect(55, 48, 735, 579);
+    context.strokeStyle = '#082f49'; context.lineWidth = 2; context.strokeRect(69, 62, 707, 551);
+    context.fillStyle = '#082f49'; context.fillRect(55, 48, 18, 579);
+    context.fillStyle = '#b43b2f'; context.fillRect(73, 48, 120, 11);
+
+    context.fillStyle = '#082f49'; context.font = '600 29px "Barlow Condensed", Arial'; context.fillText('SAKURA', 103, 108);
+    context.fillStyle = '#b43b2f'; context.font = '600 15px "Barlow Condensed", Arial'; context.fillText('RESERVA CONFIRMADA', 103, 135);
+    context.strokeStyle = '#8ca4ae'; context.lineWidth = 1; context.beginPath(); context.moveTo(103, 157); context.lineTo(739, 157); context.stroke();
+
+    context.fillStyle = '#182026'; context.font = '600 51px "Bodoni Moda", Georgia'; context.fillText(String(state.result.name).slice(0, 23), 103, 222);
+    context.fillStyle = '#64727a'; context.font = '600 16px "Barlow Condensed", Arial'; context.fillText('FECHA Y HORA', 103, 277);
+    context.fillStyle = '#182026'; context.font = '500 29px "Bodoni Moda", Georgia'; context.fillText(formatDate(state.result.starts_at), 103, 315);
+    context.fillStyle = '#64727a'; context.font = '600 16px "Barlow Condensed", Arial'; context.fillText('TU VISITA', 103, 371);
+    context.fillStyle = '#182026'; context.font = '500 27px "Bodoni Moda", Georgia'; context.fillText(`${state.result.partySize} personas · ${state.result.sectionName}`, 103, 409);
+
+    context.fillStyle = '#082f49'; context.fillRect(103, 478, 505, 82);
+    context.fillStyle = '#abc0c9'; context.font = '600 14px "Barlow Condensed", Arial'; context.fillText('CÓDIGO DE RESERVA', 126, 507);
+    context.fillStyle = '#fff'; context.font = '600 28px "Barlow Condensed", Arial'; context.fillText(state.result.reservation_code, 126, 542);
+
+    context.fillStyle = '#b43b2f'; context.fillRect(932, 456, 116, 116);
+    context.strokeStyle = '#f3ead7'; context.lineWidth = 2; context.strokeRect(943, 467, 94, 94);
+    context.fillStyle = '#f3ead7'; context.font = '700 34px "Noto Sans JP", sans-serif'; context.textAlign = 'center'; context.fillText('さくら', 990, 529); context.textAlign = 'left';
+    context.fillStyle = '#f3ead7'; context.font = '600 14px "Barlow Condensed", Arial'; context.fillText('COCINA JAPONESA', 927, 603);
     const link = document.createElement('a'); link.download = `reserva-${state.result.reservation_code}.png`; link.href = canvas.toDataURL('image/png'); link.click();
   }
 
@@ -199,5 +221,6 @@
   elements.continueButton.addEventListener('click', showDetails); document.querySelector('#back-button').addEventListener('click', showBooking); elements.detailsForm.addEventListener('submit', submitReservation);
   document.querySelector('#download-card').addEventListener('click', downloadCard); document.querySelector('#restart-button').addEventListener('click', () => location.reload());
   document.querySelector('#open-lookup').addEventListener('click', () => document.querySelector('#lookup-bar').classList.toggle('is-hidden')); document.querySelector('#lookup-form').addEventListener('submit', lookup);
+  if (window.location.hash === '#consulta') document.querySelector('#lookup-bar').classList.remove('is-hidden');
   initialize();
 })();

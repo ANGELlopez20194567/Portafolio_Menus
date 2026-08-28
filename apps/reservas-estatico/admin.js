@@ -152,7 +152,7 @@
   async function loadDashboard() {
     if (state.loading || !state.restaurant) return;
     state.loading = true;
-    setStatus('Sincronizando datos con Supabase…');
+    setStatus('Sincronizando datos…');
     const date = elements.reservationDate.value || localDate();
     const rangeStart = date + 'T00:00:00-05:00';
     const rangeEnd = addDays(date, 1) + 'T00:00:00-05:00';
@@ -186,7 +186,7 @@
       state.specialDates = results[9].data || [];
       configureRestaurantLinks();
       renderAll();
-      setStatus('Supabase conectado · Todos los cambios se guardan en la base de datos.');
+      setStatus('Datos actualizados · Todos los cambios se guardan automáticamente.');
     } catch (error) {
       setStatus('No fue posible cargar los datos: ' + friendlyError(error), true);
       throw error;
@@ -197,11 +197,9 @@
 
   function configureRestaurantLinks() {
     const params = '?restaurant=' + encodeURIComponent(state.restaurant.public_id);
-    const publicUrl = new URL('index.html' + params, window.location.href).href;
-    document.querySelector('#public-link').href = 'index.html' + params;
-    document.querySelector('#new-reservation').href = 'index.html' + params + '&source=admin';
-    document.querySelector('#tab-reservas .toolbar a').href = 'index.html' + params + '&source=admin';
-    document.querySelector('#share-url').value = publicUrl;
+    document.querySelector('#public-link').href = 'reservar.html' + params;
+    document.querySelector('#new-reservation').href = 'reservar.html' + params + '&source=admin';
+    document.querySelector('#tab-reservas .toolbar a').href = 'reservar.html' + params + '&source=admin';
     document.querySelector('#admin-user').textContent = state.session.user.email || '';
   }
   function sectionName(id) {
@@ -502,7 +500,7 @@
           const result = await client.from('service_periods').delete().eq('id', item.id).eq('restaurant_id', state.restaurant.id).select('id');
           if (result.error) throw result.error;
           if (!result.data || !result.data.length) throw new Error('El horario no se encontró o no tienes permiso para borrarlo.');
-          setStatus('El horario se borró de Supabase.');
+          setStatus('El horario se eliminó correctamente.');
           await loadDashboard();
         } catch (error) {
           button.disabled = false;
@@ -590,7 +588,7 @@
       const result = await client.from(table).update({ active: !item.active }).eq('id', item.id).eq('restaurant_id', state.restaurant.id).select('id');
       if (result.error) throw result.error;
       if (!result.data || !result.data.length) throw new Error('El registro no se encontró o no tienes permiso para modificarlo.');
-      setStatus('La ' + label + ' se actualizó en Supabase.');
+      setStatus('La ' + label + ' se actualizó correctamente.');
       await loadDashboard();
     } catch (error) {
       setStatus('No se pudo actualizar la ' + label + ': ' + friendlyError(error), true);
@@ -777,12 +775,6 @@
     document.querySelector('#reservation-dialog-close').addEventListener('click', function () { elements.reservationDialog.close(); });
     elements.reservationDialog.addEventListener('click', function (event) {
       if (event.target === elements.reservationDialog) elements.reservationDialog.close();
-    });
-    document.querySelector('#copy-share-url').addEventListener('click', async function () {
-      const field = document.querySelector('#share-url');
-      try { await navigator.clipboard.writeText(field.value); }
-      catch (error) { field.select(); document.execCommand('copy'); }
-      setStatus('Enlace público copiado.');
     });
   }
 

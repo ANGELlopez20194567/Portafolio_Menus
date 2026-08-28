@@ -3,106 +3,119 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Reserva tu mesa en línea.">
-  <title>MESA · Reservar</title>
-  <link rel="stylesheet" href="styles.css?v=20260827e">
+  <meta name="description" content="Menú y reservaciones de SAKURA Cocina Japonesa.">
+  <title>SAKURA · Cocina Japonesa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260828a">
+  <link rel="stylesheet" href="sakura.css?v=20260828e">
+  <link rel="stylesheet" href="../../packages/back-link/back-link.css">
 </head>
-<body class="guest-body">
-  <header class="guest-header">
-    <a class="wordmark" href="index.html" aria-label="MESA, inicio">
-      <span class="brand-mon" aria-hidden="true">間</span>
-      <span class="brand-name">MESA <small>御食事処</small></span>
+<body class="guest-body sakura-site">
+  <header class="guest-header sakura-header">
+    <a class="wordmark" href="index.html" aria-label="SAKURA Cocina Japonesa, inicio">
+      <span class="brand-mon" aria-hidden="true">さ</span>
+      <span class="brand-name">SAKURA <small>COCINA JAPONESA</small></span>
     </a>
-    <nav>
-      <a href="#reservar">Reservar</a>
-      <button class="link-button" id="open-lookup" type="button">Consultar reserva</button>
-      <a class="outline-button" href="admin.html">Administración <span aria-hidden="true">↗</span></a>
+    <nav aria-label="Navegación principal">
+      <a href="#carta">Menú</a>
+      <a href="reservar.html#consulta">Consultar reserva</a>
+      <a class="back-link" href="../landing/" aria-label="Volver al portafolio RayelTech"><span class="back-label">Volver a RayelTech</span><span class="back-arrow" aria-hidden="true">↖</span></a>
+      <a class="reservation-nav" href="reservar.html"><small>Disponibilidad en línea</small><strong>Haz tu reserva</strong></a>
     </nav>
   </header>
 
-  <section class="lookup-bar is-hidden" id="lookup-bar">
-    <form id="lookup-form">
-      <strong>Consulta tu reserva</strong>
-      <input id="lookup-code" placeholder="Código de la imagen" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
-      <button type="submit">Buscar</button>
-    </form>
-    <p id="lookup-result"></p>
-  </section>
 
-  <main class="guest-hero" id="reservar">
-    <section class="booking-card">
-      <div class="card-crest" aria-hidden="true">
-        <span></span>
-        <svg viewBox="0 0 64 64" role="img"><path d="M9 18h46M15 18v8h34v-8M20 26v25M44 26v25M15 51h34M24 26l8 9 8-9"/></svg>
-        <span></span>
-      </div>
-      <header class="card-header">
-        <div>
-          <p class="step-label" id="step-label">Reservación · Paso 01 de 03</p>
-          <h1 id="card-title">Elige el día de tu visita</h1>
-          <p class="card-intro" id="card-intro">Selecciona una fecha disponible; después podrás elegir comensales, salón y horario.</p>
+  <main>
+    <section class="menu-hero" id="menu">
+      <div class="menu-hero-copy">
+        <p class="sakura-kicker">SAKURA · さくら</p>
+        <h1><span lang="ja">いただきます。</span><br><em>Comienza la experiencia.</em></h1>
+        <div class="hero-actions">
+          <a class="text-action" href="#carta">Ver la carta</a>
+          <a class="reserve-action" href="reservar.html"><small>Disponibilidad en línea</small><strong>Haz tu reserva</strong></a>
         </div>
-        <span class="mini-mark" aria-hidden="true">予約</span>
+      </div>
+      <div class="menu-hero-art" role="img" aria-label="Nubes japonesas en tonos azul índigo">
+        <span lang="ja">にほんりょうり</span>
+        <p>COCINA JAPONESA</p>
+      </div>
+      <p class="hero-index" aria-hidden="true">01 — MENÚ</p>
+    </section>
+
+    <section class="menu-sheet" id="carta" aria-labelledby="menu-title">
+      <header class="menu-heading">
+        <div><p class="sakura-kicker">Nuestra selección</p><h2 id="menu-title">La carta</h2></div>
+        <p>Ingredientes honestos, preparaciones precisas y platos pensados para llegar al centro de la mesa.</p>
       </header>
 
-      <section id="booking-step">
-        <div class="guest-calendar" aria-label="Calendario para elegir la fecha de la reserva">
-          <div class="guest-calendar-head">
-            <button id="calendar-previous" type="button" aria-label="Mes anterior">←</button>
-            <strong id="calendar-month"></strong>
-            <button id="calendar-next" type="button" aria-label="Mes siguiente">→</button>
-          </div>
-          <div class="guest-calendar-weekdays" aria-hidden="true">
-            <span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span>
-          </div>
-          <div class="guest-calendar-grid" id="guest-calendar-grid"></div>
-          <input id="date" type="hidden" required>
-        </div>
-
-        <div class="booking-options is-hidden" id="booking-options">
-          <div class="selected-date-banner">
-            <span aria-hidden="true">日</span>
-            <div><small>Fecha seleccionada</small><strong id="selected-booking-date"></strong></div>
-            <button id="change-date" type="button">Cambiar</button>
-          </div>
-          <div class="booking-fields">
-            <label><span>Comensales</span><select id="party-size"></select></label>
-            <label><span>Ambiente</span><select id="section"><option value="">La mejor disponible</option></select></label>
-          </div>
-          <div class="slot-heading"><span>Horarios disponibles</span><span id="party-label">2 comensales</span></div>
-          <div class="time-slots" id="time-slots"></div>
-          <p class="form-message" id="booking-message"></p>
-          <button class="primary-button" id="continue-button" type="button" disabled>Continuar <span>→</span></button>
+      <section class="menu-category" aria-labelledby="entradas-title">
+        <header><span lang="ja">イチ</span><div><p>01</p><h3 id="entradas-title">Entradas</h3></div></header>
+        <div class="menu-items">
+          <article><div><span>01</span><h4>Edamame</h4><strong>$75</strong></div><p>Vainas de soya al vapor con sal marina.</p></article>
+          <article><div><span>02</span><h4>Gyozas de Cerdo</h4><strong>$110</strong></div><p>5 piezas de dumplings rellenos de cerdo y vegetales.</p></article>
+          <article><div><span>03</span><h4>Gyozas de Camarón</h4><strong>$125</strong></div><p>5 piezas de dumplings rellenos de camarón y vegetales.</p></article>
+          <article><div><span>04</span><h4>Kushiage de Camarón</h4><strong>$135</strong></div><p>3 brochetas de camarón empanizado con salsa especial.</p></article>
         </div>
       </section>
 
-      <form class="details-form is-hidden" id="details-form">
-        <div class="selection-summary"><strong id="selection-date"></strong><span id="selection-detail"></span></div>
-        <label><span>Nombre completo</span><input id="guest-name" maxlength="120" required></label>
-        <label><span>Correo electrónico</span><input id="guest-email" type="email" maxlength="320" required></label>
-        <label><span>Teléfono</span><input id="guest-phone" type="tel" maxlength="30"></label>
-        <label><span>Solicitudes especiales</span><textarea id="guest-notes" rows="3" maxlength="500"></textarea></label>
-        <label class="check-label"><input id="privacy" type="checkbox" required><span>Acepto el uso de mis datos para gestionar esta reserva.</span></label>
-        <p class="form-message" id="details-message"></p>
-        <div class="form-actions"><button class="secondary-button" id="back-button" type="button">Atrás</button><button class="primary-button" type="submit">Confirmar reserva <span>→</span></button></div>
-      </form>
-
-      <section class="confirmation is-hidden" id="confirmation">
-        <article class="confirmation-card">
-          <i>✓</i><p>Reserva confirmada</p><h3 id="confirmed-name"></h3>
-          <strong id="confirmed-date"></strong><span id="confirmed-detail"></span>
-          <div id="confirmed-code"></div>
-        </article>
-        <p id="email-note"></p>
-        <button class="primary-button" id="download-card" type="button">Guardar tarjeta como imagen <span>↓</span></button>
-        <button class="link-button restart-button" id="restart-button" type="button">Hacer otra reserva</button>
+      <section class="menu-category" aria-labelledby="sushi-title">
+        <header><span lang="ja">ニ</span><div><p>02</p><h3 id="sushi-title">Sushi</h3></div></header>
+        <div class="menu-items">
+          <article><div><span>05</span><h4>California Roll</h4><strong>$145</strong></div><p>Cangrejo, aguacate y pepino. 8 piezas.</p></article>
+          <article><div><span>06</span><h4>Philadelphia Roll</h4><strong>$165</strong></div><p>Salmón, queso crema y aguacate. 8 piezas.</p></article>
+          <article><div><span>07</span><h4>Ebi Roll</h4><strong>$175</strong></div><p>Camarón, aguacate y pepino. 8 piezas.</p></article>
+          <article><div><span>08</span><h4>Spicy Tuna Roll</h4><strong>$180</strong></div><p>Atún fresco, pepino y salsa picante. 8 piezas.</p></article>
+          <article><div><span>09</span><h4>Dragon Roll</h4><strong>$220</strong></div><p>Camarón tempura, aguacate y salsa de anguila. 8 piezas.</p></article>
+          <article><div><span>10</span><h4>Sashimi de Salmón</h4><strong>$195</strong></div><p>6 cortes de salmón fresco.</p></article>
+          <article><div><span>11</span><h4>Sashimi de Atún</h4><strong>$210</strong></div><p>6 cortes de atún fresco.</p></article>
+        </div>
       </section>
+
+      <aside class="reservation-prompt" aria-label="Reservar una mesa">
+        <div><p>Tu mesa bajo el cielo índigo</p><h2>Ven a comer a SAKURA.</h2></div>
+        <a href="reservar.html"><small>Disponibilidad en línea</small><strong>Haz tu reserva</strong></a>
+      </aside>
+
+      <section class="menu-category" aria-labelledby="fuertes-title">
+        <header><span lang="ja">サン</span><div><p>03</p><h3 id="fuertes-title">Platos fuertes</h3></div></header>
+        <div class="menu-items">
+          <article><div><span>12</span><h4>Ramen de Cerdo</h4><strong>$195</strong></div><p>Caldo japonés, cerdo, huevo, alga nori y cebollín.</p></article>
+          <article><div><span>13</span><h4>Ramen de Pollo</h4><strong>$185</strong></div><p>Caldo japonés, pollo, huevo, alga nori y cebollín.</p></article>
+          <article><div><span>14</span><h4>Yakisoba de Pollo</h4><strong>$175</strong></div><p>Fideos salteados con pollo y vegetales.</p></article>
+          <article><div><span>15</span><h4>Yakisoba de Camarón</h4><strong>$195</strong></div><p>Fideos salteados con camarón y vegetales.</p></article>
+          <article><div><span>16</span><h4>Teriyaki de Pollo</h4><strong>$180</strong></div><p>Pollo a la plancha con salsa teriyaki, arroz y vegetales.</p></article>
+          <article><div><span>17</span><h4>Teriyaki de Salmón</h4><strong>$225</strong></div><p>Salmón a la plancha con salsa teriyaki, arroz y vegetales.</p></article>
+          <article><div><span>18</span><h4>Katsu de Cerdo</h4><strong>$185</strong></div><p>Milanesa japonesa de cerdo con arroz y salsa tonkatsu.</p></article>
+        </div>
+      </section>
+
+      <div class="menu-pair">
+        <section class="menu-category compact" aria-labelledby="bebidas-title">
+          <header><span lang="ja">ヨン</span><div><p>04</p><h3 id="bebidas-title">Bebidas</h3></div></header>
+          <div class="menu-items">
+            <article><div><span>19</span><h4>Agua Natural</h4><strong>$35</strong></div><p>Botella de 600 ml.</p></article>
+            <article><div><span>20</span><h4>Agua Mineral</h4><strong>$45</strong></div><p>Botella de 600 ml.</p></article>
+            <article><div><span>21</span><h4>Té Verde Japonés</h4><strong>$55</strong></div><p>Servido frío o caliente.</p></article>
+            <article><div><span>22</span><h4>Limonada Japonesa</h4><strong>$65</strong></div><p>Limón, agua mineral y un toque de jengibre.</p></article>
+          </div>
+        </section>
+        <section class="menu-category compact" aria-labelledby="postres-title">
+          <header><span lang="ja">ゴ</span><div><p>05</p><h3 id="postres-title">Postres</h3></div></header>
+          <div class="menu-items">
+            <article><div><span>23</span><h4>Mochi de Matcha</h4><strong>$85</strong></div><p>2 piezas rellenas de helado de matcha.</p></article>
+            <article><div><span>24</span><h4>Cheesecake Japonés</h4><strong>$95</strong></div><p>Ligero y esponjoso, estilo japonés.</p></article>
+            <article><div><span>25</span><h4>Tempura de Helado</h4><strong>$110</strong></div><p>Helado de vainilla cubierto con tempura y miel.</p></article>
+          </div>
+        </section>
+      </div>
+
+      <footer class="menu-note"><p>Todos los precios están expresados en pesos mexicanos (MXN).</p><p>Pregunta por ingredientes, alérgenos y opciones disponibles.</p></footer>
     </section>
+
   </main>
 
-  <script src="config.local.js?v=20260825c"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase.js?v=20260825d"></script>
-  <script src="comensal.js?v=20260827e"></script>
+  <footer class="sakura-footer"><strong>SAKURA</strong><p>Cocina japonesa · México</p><nav aria-label="Información legal"><a href="legales.html">Legal y privacidad</a><a href="#menu">Volver al inicio</a></nav></footer>
 </body>
 </html>

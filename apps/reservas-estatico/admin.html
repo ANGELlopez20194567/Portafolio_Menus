@@ -4,27 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Administración de reservas, mesas y horarios.">
-  <title>MESA · Administración</title>
-  <link rel="stylesheet" href="styles.css?v=20260827e">
+  <title>SAKURA · Administración</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260828b">
 </head>
 <body>
   <main class="access-shell" id="access-shell">
     <section class="access-visual">
-      <a class="access-brand" href="index.html">MESA <span>●</span></a>
+      <a class="access-brand" href="index.html" aria-label="SAKURA Cocina Japonesa, ir al menú"><span class="brand-mon" aria-hidden="true">さ</span><span class="brand-name">SAKURA <small>COCINA JAPONESA</small></span></a>
       <div>
         <p class="eyebrow">Administración privada</p>
         <h1>Tu sala,<br>en orden.</h1>
         <p>Controla reservas, capacidad y horarios desde un acceso propio del restaurante.</p>
       </div>
-      <small>Acceso protegido con Supabase Auth · Cuenta exclusiva del restaurante</small>
+      <small>Acceso privado · Cuenta exclusiva del restaurante · <a href="legales.html">Legal y privacidad</a></small>
     </section>
     <section class="access-panel">
       <div class="access-card" id="auth-card">
-        <p class="eyebrow">Panel MESA</p>
+        <p class="eyebrow">Panel SAKURA</p>
         <h2 id="auth-title">Entrar al restaurante</h2>
         <p id="auth-description">Usa el correo y contraseña exclusivos de este administrador.</p>
         <form id="auth-form" class="access-form">
-          <label><span>Correo del administrador</span><input name="email" type="email" autocomplete="username" placeholder="Correo de Supabase Auth" required></label>
+          <label><span>Correo del administrador</span><input name="email" type="email" autocomplete="username" placeholder="Correo del administrador" required></label>
           <label><span>Contraseña</span><input name="password" type="password" autocomplete="current-password" minlength="8" placeholder="Mínimo 8 caracteres" required></label>
           <button class="primary-button" type="submit"><span id="auth-submit-label">Iniciar sesión</span> <span>→</span></button>
         </form>
@@ -33,7 +36,7 @@
       </div>
 
       <div class="access-card is-hidden" id="config-card">
-        <p class="eyebrow">Falta conectar Supabase</p>
+        <p class="eyebrow">Falta configurar la conexión</p>
         <h2>Configura la aplicación</h2>
         <p>Agrega la URL y la publishable key en <code>config.local.js</code>. Nunca uses una secret key o <code>service_role</code> en el navegador.</p>
       </div>
@@ -42,7 +45,7 @@
 
   <main class="admin-shell is-hidden" id="admin-shell">
     <aside class="admin-sidebar">
-      <a class="admin-brand" href="index.html">M<span>●</span></a>
+      <a class="admin-brand" href="index.html" aria-label="SAKURA Cocina Japonesa, ir al menú"><span class="brand-mon" aria-hidden="true">さ</span><span class="brand-name">SAKURA <small>COCINA JAPONESA</small></span></a>
       <nav id="admin-nav">
         <button class="is-active" data-tab="resumen"><span>01</span>Resumen</button>
         <button data-tab="reservas"><span>02</span>Reservas</button>
@@ -50,15 +53,15 @@
         <button data-tab="horarios"><span>04</span>Horarios</button>
         <button data-tab="ajustes"><span>05</span>Ajustes</button>
       </nav>
-      <a class="public-link" id="public-link" href="index.html">Ver reservas ↗</a>
+      <a class="public-link" id="public-link" href="reservar.html">Ver reservas ↗</a>
     </aside>
 
     <section class="admin-main">
       <header class="admin-topbar">
         <div><p class="eyebrow" id="today-label"></p><h1>Panel del restaurante</h1></div>
-        <div class="admin-actions"><span class="admin-user" id="admin-user"></span><button id="focus-search" type="button">⌕ Buscar</button><a class="new-reservation" id="new-reservation" href="index.html?source=admin">＋ Nueva reserva</a><button id="logout-button" class="logout-button" type="button">Salir</button></div>
+        <div class="admin-actions"><span class="admin-user" id="admin-user"></span><button id="focus-search" type="button">⌕ Buscar</button><a class="new-reservation" id="new-reservation" href="reservar.html?source=admin">＋ Nueva reserva</a><button id="logout-button" class="logout-button" type="button">Salir</button></div>
       </header>
-      <div class="admin-status" id="admin-status">Comprobando Supabase…</div>
+      <div class="admin-status" id="admin-status">Comprobando conexión…</div>
 
       <section class="admin-tab is-active" id="tab-resumen">
         <div class="metrics"><article><span>Reservas</span><strong id="metric-reservations">0</strong><small>para hoy</small></article><article><span>Comensales</span><strong id="metric-guests">0</strong><small>cubiertos previstos hoy</small></article><article class="reservation-totals"><span>Todas las reservas</span><div><p><strong id="metric-past">0</strong><small>pasadas</small></p><p><strong id="metric-future">0</strong><small>a futuro</small></p></div></article><article><span>Próxima llegada</span><strong id="metric-next">—</strong><small id="metric-next-name">Sin llegadas</small></article><article class="accent"><span>Mesas activas</span><strong id="metric-tables">0</strong><small>configuradas</small></article></div>
@@ -67,12 +70,12 @@
 
       <section class="admin-tab" id="tab-reservas">
         <div class="section-heading"><p class="eyebrow">Operación</p><h2>Reservas</h2><p>Busca por código, nombre, correo o teléfono. Cancelar conserva el historial.</p></div>
-        <div class="toolbar"><div class="reservation-date-picker"><input id="reservation-date" type="hidden"><button class="reservation-date-trigger" id="reservation-date-trigger" type="button" aria-haspopup="dialog" aria-expanded="false"><span>Fecha</span><strong id="reservation-date-label">Seleccionar fecha</strong><i aria-hidden="true">⌄</i></button><div class="reservation-calendar" id="reservation-calendar" role="dialog" aria-label="Seleccionar fecha de reservas" hidden><header><button id="calendar-previous" type="button" aria-label="Mes anterior">←</button><strong id="calendar-month-label"></strong><button id="calendar-next" type="button" aria-label="Mes siguiente">→</button></header><div class="calendar-weekdays" aria-hidden="true"><span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span></div><div class="calendar-grid" id="reservation-calendar-grid"></div><p class="calendar-legend"><i></i> Fecha con reservas</p></div></div><input id="reservation-search" type="search" placeholder="Buscar reserva…"><a href="index.html?source=admin">＋ Crear</a></div>
+        <div class="toolbar"><div class="reservation-date-picker"><input id="reservation-date" type="hidden"><button class="reservation-date-trigger" id="reservation-date-trigger" type="button" aria-haspopup="dialog" aria-expanded="false"><span>Fecha</span><strong id="reservation-date-label">Seleccionar fecha</strong><i aria-hidden="true">⌄</i></button><div class="reservation-calendar" id="reservation-calendar" role="dialog" aria-label="Seleccionar fecha de reservas" hidden><header><button id="calendar-previous" type="button" aria-label="Mes anterior">←</button><strong id="calendar-month-label"></strong><button id="calendar-next" type="button" aria-label="Mes siguiente">→</button></header><div class="calendar-weekdays" aria-hidden="true"><span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span></div><div class="calendar-grid" id="reservation-calendar-grid"></div><p class="calendar-legend"><i></i> Fecha con reservas</p></div></div><input id="reservation-search" type="search" placeholder="Buscar reserva…"><a href="reservar.html?source=admin">＋ Crear</a></div>
         <div class="reservation-list" id="reservation-list"></div>
       </section>
 
       <section class="admin-tab" id="tab-mesas">
-        <div class="section-heading"><p class="eyebrow">Capacidad</p><h2>Secciones y mesas</h2><p>Todo cambio se guarda directamente en Supabase y afecta la disponibilidad pública.</p></div>
+        <div class="section-heading"><p class="eyebrow">Capacidad</p><h2>Secciones y mesas</h2><p>Los cambios afectan inmediatamente la disponibilidad pública.</p></div>
         <div class="management-panels">
           <section class="config-panel" aria-labelledby="sections-title"><div class="config-panel-head"><div><p class="eyebrow">Áreas del restaurante</p><h3 id="sections-title">Secciones</h3></div><p>Crea zonas como Interior, Terraza o Barra.</p></div><form class="inline-form" id="section-form"><input name="name" aria-label="Nombre de la sección" placeholder="Ej. Terraza" required><input name="description" aria-label="Descripción de la sección" placeholder="Descripción"><button>Añadir sección</button></form><div class="config-list" id="section-list"></div></section>
           <section class="config-panel" aria-labelledby="tables-title"><div class="config-panel-head"><div><p class="eyebrow">Capacidad disponible</p><h3 id="tables-title">Mesas</h3></div><p>Asigna cada mesa a una sección y define sus sillas.</p></div><form class="inline-form table-form" id="table-form"><input name="number" aria-label="Número o nombre de mesa" placeholder="Ej. M4" required><input name="capacity" aria-label="Cantidad de sillas" type="number" min="1" value="4" required><select name="section" aria-label="Sección de la mesa" required></select><button>Añadir mesa</button></form><div class="table-grid" id="table-list"></div></section>
@@ -117,8 +120,6 @@
       <section class="admin-tab" id="tab-ajustes">
         <div class="section-heading"><p class="eyebrow">Reglas</p><h2>Ajustes de reserva</h2><p>Define intervalos, duración y anticipación.</p></div>
         <form class="settings-form" id="settings-form"><label><span class="field-label">Intervalo entre horarios <button class="help-tip" type="button" aria-label="Define cada cuántos minutos se ofrece una hora de llegada. Por ejemplo, 30 minutos muestra 13:00, 13:30 y 14:00." data-tooltip="Define cada cuántos minutos se ofrece una hora de llegada. Por ejemplo, 30 min muestra 13:00, 13:30 y 14:00.">?</button></span><select name="interval"><option value="30">30 minutos</option><option value="60">1 hora</option><option value="120">2 horas</option><option value="240">4 horas</option><option value="360">6 horas</option></select></label><label><span class="field-label">Duración de mesa <button class="help-tip" type="button" aria-label="Tiempo que la mesa queda ocupada por una reserva. Afecta cuándo puede volver a ofrecerse a otro grupo." data-tooltip="Tiempo que la mesa queda ocupada por una reserva. Afecta cuándo puede volver a ofrecerse a otro grupo.">?</button></span><select name="duration"><option value="60">1 hora</option><option value="90">1.5 horas</option><option value="120" selected>2 horas</option><option value="180">3 horas</option></select></label><label><span class="field-label">Grupo máximo <button class="help-tip" type="button" aria-label="Mayor cantidad de personas permitida en una sola reserva. Los grupos superiores no podrán continuar en el formulario público." data-tooltip="Mayor cantidad de personas permitida en una sola reserva. Los grupos superiores no podrán reservar en línea.">?</button></span><input name="party" type="number" min="1" value="20"></label><label><span class="field-label">Anticipación mínima (min) <button class="help-tip" type="button" aria-label="Tiempo mínimo entre el momento de reservar y la llegada. Con 60 minutos, una persona no puede reservar para dentro de menos de una hora." data-tooltip="Tiempo mínimo entre la reserva y la llegada. Con 60 min, nadie podrá reservar para dentro de menos de una hora.">?</button></span><input name="advance" type="number" min="0" value="60"></label><button class="primary-button">Guardar ajustes <span>→</span></button></form>
-        <div class="security-note connected-note"><strong>Acceso protegido</strong><p>Los datos se guardan en Supabase. Las políticas RLS sólo permiten operar las filas cuyo dueño coincide con este usuario autenticado.</p></div>
-        <div class="share-box"><div><strong>Enlace para comensales</strong><p>Este enlace abre la interfaz pública conectada a tu restaurante.</p></div><input id="share-url" readonly><button id="copy-share-url" type="button">Copiar</button></div>
       </section>
     </section>
   </main>
@@ -131,6 +132,6 @@
   <script src="config.local.js?v=20260826a"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.js?v=20260826a"></script>
-  <script src="admin.js?v=20260827e"></script>
+  <script src="admin.js?v=20260828b"></script>
 </body>
 </html>
