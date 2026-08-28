@@ -26,7 +26,7 @@ if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
   throw new Error('RESTAURANT_ID debe ser un UUID válido.');
 }
 
-const publicDirectories = ['apps', 'assets'];
+const publicDirectories = ['apps', 'assets', 'packages'];
 const excludedPaths = new Set([
   'apps/reservas-estatico/.gitignore',
   'apps/reservas-estatico/ACCESO_ADMIN.md',

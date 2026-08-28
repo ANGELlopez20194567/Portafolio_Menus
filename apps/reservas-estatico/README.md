@@ -61,8 +61,9 @@ Abrir los archivos directamente con `file://` no es recomendable porque algunos 
 
 ## Publicar en GitHub Pages
 
-El workflow `.github/workflows/reservas-pages.yml` publica las carpetas públicas `apps`
-y `assets` del portafolio, e inyecta la configuración de esta aplicación sin versionarla.
+El workflow `.github/workflows/reservas-pages.yml` publica las carpetas públicas `apps`,
+`assets` y `packages` del portafolio, e inyecta la configuración de esta aplicación sin
+versionarla.
 Antes de ejecutarlo, crea estas variables del repositorio en **Settings → Secrets and
 variables → Actions → Variables**:
 
