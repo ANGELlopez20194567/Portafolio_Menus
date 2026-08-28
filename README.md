@@ -64,3 +64,9 @@ Evita estas prácticas:
 - Verifica rendimiento, vista móvil y enlaces antes de publicar.
 
 No se versionan secretos, credenciales, datos personales reales ni archivos `.env` con valores.
+
+## Reservas estáticas y Supabase
+
+La interfaz HTML, CSS y JavaScript vive en `apps/reservas-estatico`. El esquema remoto,
+su modelo de acceso y los contratos RPC necesarios están documentados en
+`infrastructure/database/README.md`.

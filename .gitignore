@@ -11,3 +11,8 @@ dist/
 build/
 .next/
 coverage/
+
+# Herramientas locales de Codex y artefactos de publicación
+.agents/
+skills-lock.json
+_site/

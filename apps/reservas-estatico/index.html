@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reserva tu mesa en línea.">
+  <title>MESA · Reservar</title>
+  <link rel="stylesheet" href="styles.css?v=20260827e">
+</head>
+<body class="guest-body">
+  <header class="guest-header">
+    <a class="wordmark" href="index.html" aria-label="MESA, inicio">
+      <span class="brand-mon" aria-hidden="true">間</span>
+      <span class="brand-name">MESA <small>御食事処</small></span>
+    </a>
+    <nav>
+      <a href="#reservar">Reservar</a>
+      <button class="link-button" id="open-lookup" type="button">Consultar reserva</button>
+      <a class="outline-button" href="admin.html">Administración <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <section class="lookup-bar is-hidden" id="lookup-bar">
+    <form id="lookup-form">
+      <strong>Consulta tu reserva</strong>
+      <input id="lookup-code" placeholder="Código de la imagen" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+      <button type="submit">Buscar</button>
+    </form>
+    <p id="lookup-result"></p>
+  </section>
+
+  <main class="guest-hero" id="reservar">
+    <section class="booking-card">
+      <div class="card-crest" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 64 64" role="img"><path d="M9 18h46M15 18v8h34v-8M20 26v25M44 26v25M15 51h34M24 26l8 9 8-9"/></svg>
+        <span></span>
+      </div>
+      <header class="card-header">
+        <div>
+          <p class="step-label" id="step-label">Reservación · Paso 01 de 03</p>
+          <h1 id="card-title">Elige el día de tu visita</h1>
+          <p class="card-intro" id="card-intro">Selecciona una fecha disponible; después podrás elegir comensales, salón y horario.</p>
+        </div>
+        <span class="mini-mark" aria-hidden="true">予約</span>
+      </header>
+
+      <section id="booking-step">
+        <div class="guest-calendar" aria-label="Calendario para elegir la fecha de la reserva">
+          <div class="guest-calendar-head">
+            <button id="calendar-previous" type="button" aria-label="Mes anterior">←</button>
+            <strong id="calendar-month"></strong>
+            <button id="calendar-next" type="button" aria-label="Mes siguiente">→</button>
+          </div>
+          <div class="guest-calendar-weekdays" aria-hidden="true">
+            <span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span>
+          </div>
+          <div class="guest-calendar-grid" id="guest-calendar-grid"></div>
+          <input id="date" type="hidden" required>
+        </div>
+
+        <div class="booking-options is-hidden" id="booking-options">
+          <div class="selected-date-banner">
+            <span aria-hidden="true">日</span>
+            <div><small>Fecha seleccionada</small><strong id="selected-booking-date"></strong></div>
+            <button id="change-date" type="button">Cambiar</button>
+          </div>
+          <div class="booking-fields">
+            <label><span>Comensales</span><select id="party-size"></select></label>
+            <label><span>Ambiente</span><select id="section"><option value="">La mejor disponible</option></select></label>
+          </div>
+          <div class="slot-heading"><span>Horarios disponibles</span><span id="party-label">2 comensales</span></div>
+          <div class="time-slots" id="time-slots"></div>
+          <p class="form-message" id="booking-message"></p>
+          <button class="primary-button" id="continue-button" type="button" disabled>Continuar <span>→</span></button>
+        </div>
+      </section>
+
+      <form class="details-form is-hidden" id="details-form">
+        <div class="selection-summary"><strong id="selection-date"></strong><span id="selection-detail"></span></div>
+        <label><span>Nombre completo</span><input id="guest-name" maxlength="120" required></label>
+        <label><span>Correo electrónico</span><input id="guest-email" type="email" maxlength="320" required></label>
+        <label><span>Teléfono</span><input id="guest-phone" type="tel" maxlength="30"></label>
+        <label><span>Solicitudes especiales</span><textarea id="guest-notes" rows="3" maxlength="500"></textarea></label>
+        <label class="check-label"><input id="privacy" type="checkbox" required><span>Acepto el uso de mis datos para gestionar esta reserva.</span></label>
+        <p class="form-message" id="details-message"></p>
+        <div class="form-actions"><button class="secondary-button" id="back-button" type="button">Atrás</button><button class="primary-button" type="submit">Confirmar reserva <span>→</span></button></div>
+      </form>
+
+      <section class="confirmation is-hidden" id="confirmation">
+        <article class="confirmation-card">
+          <i>✓</i><p>Reserva confirmada</p><h3 id="confirmed-name"></h3>
+          <strong id="confirmed-date"></strong><span id="confirmed-detail"></span>
+          <div id="confirmed-code"></div>
+        </article>
+        <p id="email-note"></p>
+        <button class="primary-button" id="download-card" type="button">Guardar tarjeta como imagen <span>↓</span></button>
+        <button class="link-button restart-button" id="restart-button" type="button">Hacer otra reserva</button>
+      </section>
+    </section>
+  </main>
+
+  <script src="config.local.js?v=20260825c"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js?v=20260825d"></script>
+  <script src="comensal.js?v=20260827e"></script>
+</body>
+</html>
