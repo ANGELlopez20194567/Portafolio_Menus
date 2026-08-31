@@ -19,6 +19,8 @@ viven en `private` y no forman parte de la Data API.
   periodos activos a la configuración pública para bloquear fechas cerradas en el calendario.
 - `20260827225052_expose_special_closures_in_booking_config`: publica únicamente la fecha y el
   motivo de los cierres excepcionales futuros dentro de la ventana de reservas.
+- `20260831233115_add_reservation_email_delivery_worker`: añade las RPC privadas del worker que reclama
+  confirmaciones de correo sin duplicarlas y registra el resultado de Resend.
 
 Las migraciones fueron aplicadas mediante el conector oficial de Supabase y quedan
 registradas en `supabase_migrations.schema_migrations`.
@@ -113,11 +115,24 @@ indexable.
 8. Al reservar se toma un advisory lock por restaurante y fecha y se repite la
    validación dentro de la misma transacción.
 
+## Envío de confirmaciones por correo
+
+La Edge Function `send-reservation-confirmation` se invoca después de crear una reserva
+confirmada. Recibe únicamente el código público aleatorio, reclama atómicamente la salida
+correspondiente de `notification_deliveries`, envía la confirmación mediante Resend y marca
+la entrega como `sent` o `failed`. Los reintentos reutilizan una clave de idempotencia basada
+en el identificador de entrega para evitar correos duplicados.
+
+La función necesita estos secretos en **Supabase → Edge Functions → Secrets**:
+
+- `RESEND_API_KEY`: clave de Resend restringida a envío.
+- `RESEND_FROM`: remitente perteneciente al dominio verificado, por ejemplo
+  `Reservas <reservas@resend.mail.rayeltech.lat>`.
+
+Las credenciales nunca se incluyen en el navegador ni en los archivos versionados.
+
 ## Operación pendiente de aplicación
 
-- Un proceso backend debe consumir `notification_deliveries` y marcar cada envío como
-  `sent` o `failed`. Las credenciales del proveedor de correo van en secretos, nunca en
-  el repositorio.
 - La imagen de confirmación se guardará en Storage privado y su ruta se registrará en
   `reservation_artifacts`.
 - Antes de abrir el formulario públicamente se debe colocar rate limiting y CAPTCHA en

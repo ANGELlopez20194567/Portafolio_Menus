@@ -48,6 +48,15 @@
       p_confirm_immediately: true
     });
     if (error) throw error;
+    if (data && data.status === 'confirmed' && data.reservation_code) {
+      const delivery = await client.functions.invoke('send-reservation-confirmation', {
+        body: { reservationCode: data.reservation_code }
+      });
+      return {
+        ...data,
+        email_delivery_status: delivery.error ? 'queued' : (delivery.data?.status || 'queued')
+      };
+    }
     return data;
   }
 

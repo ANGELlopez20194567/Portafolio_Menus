@@ -168,7 +168,11 @@
     elements.cardIntro.textContent = 'Tu lugar ha quedado reservado. Conserva el código para consultar tu visita.';
     document.querySelector('#confirmed-name').textContent = state.result.name; document.querySelector('#confirmed-date').textContent = formatDate(state.result.starts_at);
     document.querySelector('#confirmed-detail').textContent = `${state.result.partySize} personas · ${state.result.sectionName}`; document.querySelector('#confirmed-code').textContent = `ID ${state.result.reservation_code}`;
-    document.querySelector('#email-note').textContent = state.demo ? 'Confirmación demostrativa: la reserva no se guardó.' : `La confirmación quedó registrada para enviarse a ${state.result.email}.`;
+    document.querySelector('#email-note').textContent = state.demo
+      ? 'Confirmación demostrativa: la reserva no se guardó.'
+      : state.result.email_delivery_status === 'sent' || state.result.email_delivery_status === 'already_processed'
+        ? `Enviamos la confirmación a ${state.result.email}.`
+        : `La confirmación quedó en cola para enviarse a ${state.result.email}.`;
     document.querySelector('#lookup-code').value = state.result.reservation_code;
   }
 

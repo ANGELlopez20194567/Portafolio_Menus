@@ -26,7 +26,7 @@ Aplicación estática sin framework. Supabase Auth protege exclusivamente el pan
 
 ## Administrador de demostración
 
-Existe una sola cuenta administrativa, confirmada previamente en Supabase y asignada a `Restaurante MESA`.
+Existe una sola cuenta administrativa, confirmada previamente en Supabase y asignada a `SAKURA`.
 
 Consulta [`ACCESO_ADMIN.md`](ACCESO_ADMIN.md) para ver el correo de acceso y el procedimiento
 seguro para restablecer la contraseña.
@@ -110,6 +110,11 @@ La interfaz del comensal utiliza las RPC públicas existentes:
 - `get_available_reservation_slots`
 - `create_reservation`
 - `get_reservation_receipt`
+
+Después de crear una reserva confirmada, el cliente invoca la Edge Function
+`send-reservation-confirmation` con el código público aleatorio. La función procesa en el
+servidor la salida ya registrada en `notification_deliveries`; el navegador nunca recibe
+la clave de Resend ni puede elegir libremente un destinatario.
 
 La consulta pública del comprobante solicita únicamente el código aleatorio que aparece
 en la tarjeta descargable. El token secreto se reserva para operaciones sensibles como
