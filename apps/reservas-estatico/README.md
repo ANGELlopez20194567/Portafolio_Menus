@@ -8,6 +8,7 @@ Aplicación estática sin framework. Supabase Auth protege exclusivamente el pan
 - `legal.css`: presentación responsive de la información legal.
 - `sakura.css`: identidad visual pública, carta y adaptación responsive.
 - `../../packages/back-link/back-link.css`: componente compartido para volver al portafolio RayelTech desde las páginas públicas.
+- `reservation-quote-card.js`: configuración compartida de la tarjeta comercial que aparece en todas las vistas del Reservation System y reutiliza `../../packages/floating-quote-card/quote-card.js`.
 - `admin.html`: interfaz administrativa.
 - `styles.css`: estilos compartidos y responsive.
 - `comensal.js`: disponibilidad, reserva, consulta y tarjeta PNG.
