@@ -38,7 +38,7 @@ jobs:
       - name: Subir artefacto de Pages
         uses: actions/upload-pages-artifact@v4
         with:
-          path: _site
+          path: apps/landing
 
   deploy:
     environment:
