@@ -23,6 +23,12 @@ viven en `private` y no forman parte de la Data API.
   confirmaciones de correo sin duplicarlas y registra el resultado de Resend.
 - `20260901120000_add_maximum_advance_days_to_reservation_settings`: añade la ventana máxima de días
   para reservar, la expone al calendario público y la valida al crear una reserva.
+- `20260902130000_allow_public_cancellation_by_code`: permite cancelar desde el comprobante con el
+  código público y libera sus ocupaciones activas.
+- `20260902133000_fix_public_cancellation_by_code`: reutiliza el cambio de estado normal para que
+  los triggers existentes administren ocupaciones e historial, y recarga la caché de la API.
+- `20260902134500_fix_public_cancellation_reservation_id_type`: adapta la cancelación pública al
+  tipo real del identificador de reservas.
 
 Las migraciones fueron aplicadas mediante el conector oficial de Supabase y quedan
 registradas en `supabase_migrations.schema_migrations`.
@@ -69,8 +75,9 @@ y solo devuelve campos permitidos. El comprobante se consulta únicamente con el
 público aleatorio. Los endpoints que cambian el estado, como confirmación y cancelación,
 continúan exigiendo el código más el token secreto.
 
-El token secreto para operaciones sensibles solo se entrega al crear la reserva. La base
-guarda únicamente su hash SHA-256. No se debe poner el token completo en logs ni analítica.
+El código público de reserva es el identificador que el comensal presenta para consultar
+o cancelar su reserva. No se debe poner información adicional de la reserva en URLs ni
+analítica.
 
 ### Ejemplo de disponibilidad
 
@@ -101,9 +108,9 @@ const { data, error } = await supabase.rpc('create_reservation', {
 })
 ```
 
-La respuesta incluye `reservation_code` y `lookup_token`. Deben conservarse juntos
-para mostrar el comprobante o cancelar, pero el token no debe incluirse en una URL
-indexable.
+La respuesta incluye `reservation_code` y `lookup_token`. El comprobante y la
+cancelación pública usan el código aleatorio; el token se mantiene para compatibilidad
+con flujos anteriores y no debe incluirse en una URL indexable.
 
 ## Flujo de disponibilidad
 

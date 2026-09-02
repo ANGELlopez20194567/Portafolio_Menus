@@ -10,7 +10,8 @@
     calendar: document.querySelector('.guest-calendar'), calendarGrid: document.querySelector('#guest-calendar-grid'),
     calendarMonth: document.querySelector('#calendar-month'), previousMonth: document.querySelector('#calendar-previous'),
     nextMonth: document.querySelector('#calendar-next'), bookingOptions: document.querySelector('#booking-options'),
-    selectedBookingDate: document.querySelector('#selected-booking-date'), errorBanner: document.querySelector('#reservation-error-banner')
+    selectedBookingDate: document.querySelector('#selected-booking-date'), errorBanner: document.querySelector('#reservation-error-banner'),
+    receiptDialog: document.querySelector('#guest-receipt-dialog'), receiptCard: document.querySelector('#guest-receipt-card')
   };
   const today = new Date();
   const state = { restaurantId: null, config: null, selectedSlot: null, result: null, calendarView: new Date(today.getFullYear(), today.getMonth(), 1) };
@@ -36,6 +37,8 @@
   }
   function setMessage(target, text, error) { target.textContent = text || ''; target.classList.toggle('is-error', Boolean(error)); }
   function showError() { elements.errorBanner.hidden = false; }
+  function escapeHtml(value) { return String(value == null ? '—' : value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character])); }
+  function receiptField(label, value) { return `<div class="guest-receipt-field"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`; }
 
   async function initialize() {
     elements.date.value = ''; elements.date.min = localDate();
@@ -224,9 +227,50 @@
     const link = document.createElement('a'); link.download = `reserva-${state.result.reservation_code}.png`; link.href = canvas.toDataURL('image/png'); link.click();
   }
 
+  function showReceipt(receipt) {
+    const code = document.querySelector('#lookup-code').value.trim().toUpperCase();
+    const isCancelled = receipt.status === 'cancelled';
+    elements.receiptCard.innerHTML =
+      '<button class="guest-receipt-close" type="button" data-close-receipt aria-label="Cerrar detalle">×</button>' +
+      '<p class="guest-receipt-eyebrow">Tu reserva</p><h2 id="guest-receipt-title">' + escapeHtml(receipt.guest_name || 'Reserva') + '</h2>' +
+      '<p class="guest-receipt-status ' + (isCancelled ? 'is-cancelled' : '') + '">' + escapeHtml(isCancelled ? 'Reserva cancelada' : receipt.status || 'Confirmada') + '</p>' +
+      '<div class="guest-receipt-grid">' +
+      receiptField('Fecha y hora', formatDate(receipt.starts_at)) + receiptField('Comensales', `${receipt.party_size} personas`) +
+      receiptField('Código', code) + receiptField('Ambiente', receipt.section_name || receipt.section || 'Según disponibilidad') +
+      receiptField('Correo', receipt.guest_email || '—') + receiptField('Teléfono', receipt.guest_phone || '—') +
+      receiptField('Solicitudes', receipt.special_requests || 'Sin solicitudes especiales') + '</div>' +
+      (isCancelled ? '<p class="guest-receipt-note">Esta reserva ya está cancelada y no ocupa un horario.</p>' :
+        '<form class="guest-cancel-form" id="guest-cancel-form"><div><strong>¿No podrás asistir?</strong><span>Selecciona cancelar y confirma para liberar el horario, siempre que las reglas actuales del restaurante lo permitan.</span></div><p id="guest-cancel-message" role="alert"></p><button type="submit">Cancelar reserva</button></form>');
+    elements.receiptCard.querySelector('[data-close-receipt]').addEventListener('click', () => elements.receiptDialog.close());
+    const cancelForm = elements.receiptCard.querySelector('#guest-cancel-form');
+    if (cancelForm) cancelForm.addEventListener('submit', cancelGuestReservation);
+    if (!elements.receiptDialog.open) elements.receiptDialog.showModal();
+  }
+
+  async function cancelGuestReservation(event) {
+    event.preventDefault();
+    const form = event.currentTarget; const button = form.querySelector('button'); const message = form.querySelector('#guest-cancel-message');
+    if (!window.confirm('¿Confirmas que deseas cancelar esta reserva? Esta acción no se puede deshacer.')) return;
+    button.disabled = true; message.textContent = 'Cancelando…';
+    try {
+      await api.cancelReservation(document.querySelector('#lookup-code').value);
+      const receipt = await api.getReceipt(document.querySelector('#lookup-code').value);
+      showReceipt(receipt);
+    } catch (error) {
+      button.disabled = false;
+      const detail = error && error.message ? error.message : 'Inténtalo de nuevo más tarde.';
+      message.textContent = 'No fue posible cancelar la reserva: ' + detail;
+    }
+  }
+
   async function lookup(event) {
     event.preventDefault(); const target = document.querySelector('#lookup-result');
-    try { const receipt = await api.getReceipt(document.querySelector('#lookup-code').value); target.textContent = receipt ? `${receipt.guest_name} · ${formatDate(receipt.starts_at)} · ${receipt.party_size} personas · ${receipt.status}` : 'Reserva no encontrada.'; } catch (error) { target.textContent = ''; showError(); }
+    try {
+      const receipt = await api.getReceipt(document.querySelector('#lookup-code').value);
+      if (!receipt) { target.textContent = 'Reserva no encontrada.'; return; }
+      target.textContent = '';
+      showReceipt(receipt);
+    } catch (error) { target.textContent = ''; showError(); }
   }
 
   elements.party.addEventListener('change', loadSlots); elements.section.addEventListener('change', loadSlots);
@@ -240,6 +284,7 @@
   elements.continueButton.addEventListener('click', showDetails); document.querySelector('#back-button').addEventListener('click', showBooking); elements.detailsForm.addEventListener('submit', submitReservation);
   document.querySelector('#download-card').addEventListener('click', downloadCard); document.querySelector('#restart-button').addEventListener('click', () => location.reload());
   document.querySelector('#open-lookup').addEventListener('click', () => document.querySelector('#lookup-bar').classList.toggle('is-hidden')); document.querySelector('#lookup-form').addEventListener('submit', lookup);
+  elements.receiptDialog.addEventListener('click', (event) => { if (event.target === elements.receiptDialog) elements.receiptDialog.close(); });
   if (window.location.hash === '#consulta') document.querySelector('#lookup-bar').classList.remove('is-hidden');
   initialize();
 })();

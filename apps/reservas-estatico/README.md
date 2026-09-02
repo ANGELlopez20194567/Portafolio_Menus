@@ -116,9 +116,9 @@ Después de crear una reserva confirmada, el cliente invoca la Edge Function
 servidor la salida ya registrada en `notification_deliveries`; el navegador nunca recibe
 la clave de Resend ni puede elegir libremente un destinatario.
 
-La consulta pública del comprobante solicita únicamente el código aleatorio que aparece
-en la tarjeta descargable. El token secreto se reserva para operaciones sensibles como
-confirmar o cancelar una reserva.
+La consulta pública del comprobante y su cancelación solicitan únicamente el código
+aleatorio que aparece en la tarjeta descargable. La cancelación requiere una confirmación
+explícita en la interfaz y se registra como `cancelled`; no borra la reserva.
 
 La interfaz administrativa usa sesiones de Supabase Auth y políticas RLS. Cada usuario sólo puede leer y modificar el restaurante cuyo `owner_user_id` corresponde a su `auth.uid()`.
 

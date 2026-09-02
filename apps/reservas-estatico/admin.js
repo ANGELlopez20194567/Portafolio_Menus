@@ -330,6 +330,23 @@
     }).eq('id', id).eq('restaurant_id', state.restaurant.id);
     if (result.error) throw result.error;
   }
+  async function cancelReservation(item, button) {
+    if (item.status === 'cancelled') return;
+    const confirmed = window.confirm('¿Cancelar la reserva de ' + (item.guest_name || 'este comensal') + '? La mesa y el horario volverán a estar disponibles únicamente si los ajustes de servicio todavía lo permiten.');
+    if (!confirmed) return false;
+    button.disabled = true;
+    try {
+      await updateReservationStatus(item.id, 'cancelled');
+      if (elements.reservationDialog.open) elements.reservationDialog.close();
+      setStatus('La reserva se canceló. La disponibilidad se recalculó según los horarios y reglas actuales.');
+      await loadDashboard();
+      return true;
+    } catch (error) {
+      button.disabled = false;
+      setStatus('No se pudo cancelar la reserva: ' + friendlyError(error), true);
+      return false;
+    }
+  }
   function bindReservationInteractions(container) {
     container.querySelectorAll('[data-reservation-status]').forEach(function (select) {
       select.addEventListener('click', function (event) { event.stopPropagation(); });
@@ -339,6 +356,15 @@
         const id = Number(select.dataset.reservationStatus);
         const nextStatus = select.value;
         try {
+          const item = state.reservations.find(function (reservation) { return reservation.id === id; });
+          if (nextStatus === 'cancelled' && item) {
+            const cancelled = await cancelReservation(item, select);
+            if (!cancelled) {
+              select.disabled = false;
+              select.value = item.status;
+            }
+            return;
+          }
           await updateReservationStatus(id, nextStatus);
           await loadDashboard();
         } catch (error) {
@@ -384,11 +410,22 @@
       detailField('Correo', item.guest_email, true) +
       detailField('Teléfono', item.guest_phone || 'No indicado', true) +
       detailField('Solicitudes especiales', item.special_requests || 'Sin solicitudes especiales', true) +
-      '<label class="detail-status is-wide"><span>Estado</span><select data-dialog-status="' + item.id + '">' + statuses + '</select></label>';
+      '<label class="detail-status is-wide"><span>Estado</span><select data-dialog-status="' + item.id + '">' + statuses + '</select></label>' +
+      (item.status === 'cancelled' ?
+        '<p class="reservation-cancelled-note is-wide">Esta reserva ya fue cancelada; no ocupa mesa ni horario.</p>' :
+        '<div class="reservation-cancel-actions is-wide"><div><strong>¿Necesitas liberar este horario?</strong><span>La reserva se conservará en el historial.</span></div><button type="button" data-cancel-reservation="' + item.id + '">Cancelar reserva</button></div>');
     const status = elements.reservationDetail.querySelector('[data-dialog-status]');
     status.addEventListener('change', async function () {
       status.disabled = true;
       try {
+        if (status.value === 'cancelled') {
+          const cancelled = await cancelReservation(item, status);
+          if (!cancelled) {
+            status.disabled = false;
+            status.value = item.status;
+          }
+          return;
+        }
         await updateReservationStatus(item.id, status.value);
         elements.reservationDialog.close();
         await loadDashboard();
@@ -397,6 +434,10 @@
         setStatus('No se pudo actualizar la reserva: ' + friendlyError(error), true);
       }
     });
+    const cancelButton = elements.reservationDetail.querySelector('[data-cancel-reservation]');
+    if (cancelButton) {
+      cancelButton.addEventListener('click', function () { cancelReservation(item, cancelButton); });
+    }
     elements.reservationDialog.showModal();
   }
   function renderReservations() {

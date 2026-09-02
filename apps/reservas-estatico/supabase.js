@@ -74,6 +74,15 @@
     return data;
   }
 
+  async function cancelReservation(code) {
+    if (!client) throw new Error('Supabase no está configurado.');
+    const { data, error } = await client.rpc('cancel_reservation', {
+      p_reservation_code: code.trim().toUpperCase()
+    });
+    if (error) throw error;
+    return data;
+  }
+
   async function testAdminConnection() {
     if (!client) return { connected: false, protected: false };
     const { data, error } = await client.from('restaurants').select('id').limit(1);
@@ -89,6 +98,7 @@
     getSlots,
     createReservation,
     getReceipt,
+    cancelReservation,
     testAdminConnection
   };
 })();
