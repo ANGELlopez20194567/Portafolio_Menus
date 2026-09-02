@@ -53,7 +53,7 @@ Secciones, mesas, horarios, ajustes y estados de reservas se leen y escriben dir
 - Secciones y mesas se administran en paneles separados dentro del módulo Mesas.
 - Cada día permite agregar horarios, marcarse como cerrado y volver a abrirse sin perder sus periodos anteriores. Los periodos también se pueden activar, archivar o borrar; borrar solicita confirmación y puede ser rechazado si la base de datos necesita conservar una relación existente.
 - Horarios incluye un creador de cierres excepcionales por fecha, con catálogo de celebraciones mexicanas, motivo personalizado y mensaje visible para el comensal únicamente en ese día.
-- Cada regla de reserva incluye una ayuda contextual que explica su efecto en la disponibilidad pública.
+- Cada regla de reserva incluye una ayuda contextual que explica su efecto en la disponibilidad pública. «Reservas con hasta (días)» limita el calendario público desde hoy hasta el número indicado de días (el valor inicial es 30).
 
 ## Ejecutar
 

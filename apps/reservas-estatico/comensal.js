@@ -12,13 +12,22 @@
     nextMonth: document.querySelector('#calendar-next'), bookingOptions: document.querySelector('#booking-options'),
     selectedBookingDate: document.querySelector('#selected-booking-date')
   };
-  const demoConfig = { name: 'Restaurante SAKURA', maximum_party_size: 12, open_weekdays: [0, 2, 3, 4, 5, 6], closed_dates: [], sections: [{ publicId: 'interior', name: 'Interior' }, { publicId: 'terraza', name: 'Terraza' }] };
+  const demoConfig = { name: 'Restaurante SAKURA', maximum_party_size: 12, maximum_advance_days: 30, open_weekdays: [0, 2, 3, 4, 5, 6], closed_dates: [], sections: [{ publicId: 'interior', name: 'Interior' }, { publicId: 'terraza', name: 'Terraza' }] };
   const today = new Date();
   const state = { restaurantId: null, config: demoConfig, demo: true, selectedSlot: null, result: null, calendarView: new Date(today.getFullYear(), today.getMonth(), 1) };
 
   function localDate() {
     const date = new Date();
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  }
+  function addDays(value, days) {
+    const [year, month, day] = value.split('-').map(Number);
+    const date = new Date(year, month - 1, day + days);
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  }
+  function lastBookableDate() {
+    const configured = Number(state.config.maximum_advance_days);
+    return addDays(localDate(), Number.isFinite(configured) && configured >= 0 ? configured : 30);
   }
   function formatDate(value) { return new Intl.DateTimeFormat('es-MX', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value)); }
   function formatTime(value) { return new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(value)); }
@@ -47,6 +56,7 @@
     const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const todayValue = localDate();
+    const lastBookable = lastBookableDate();
     const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
     elements.calendarMonth.textContent = new Intl.DateTimeFormat('es-MX', { month: 'long', year: 'numeric' }).format(state.calendarView);
@@ -62,13 +72,14 @@
       const weekday = new Date(year, month, day).getDay();
       const specialClosure = (state.config.closed_dates || []).find((item) => item.date === value);
       const isWeeklyClosed = Array.isArray(state.config.open_weekdays) && !state.config.open_weekdays.includes(weekday);
-      const isClosed = isWeeklyClosed || Boolean(specialClosure);
+      const isOutsideWindow = value < todayValue || value > lastBookable;
+      const isClosed = isWeeklyClosed || Boolean(specialClosure) || isOutsideWindow;
       const closureLabel = specialClosure ? specialClosure.label : 'Cerrado';
       const button = document.createElement('button');
       button.type = 'button'; button.className = 'guest-calendar-day'; button.textContent = day;
-      button.disabled = value < todayValue || isClosed;
-      button.setAttribute('aria-label', `${formatCalendarDate(value)}${isClosed ? ` · Cerrado: ${closureLabel}` : ''}`);
-      if (isClosed) button.title = closureLabel;
+      button.disabled = isClosed;
+      button.setAttribute('aria-label', `${formatCalendarDate(value)}${isOutsideWindow ? ' · Fuera del periodo disponible para reservar' : isClosed ? ` · Cerrado: ${closureLabel}` : ''}`);
+      if (isOutsideWindow) button.title = 'Fuera del periodo disponible para reservar'; else if (isClosed) button.title = closureLabel;
       button.classList.toggle('is-today', value === todayValue);
       button.classList.toggle('is-selected', value === elements.date.value);
       button.classList.toggle('is-closed', isClosed);
@@ -220,7 +231,11 @@
 
   elements.party.addEventListener('change', loadSlots); elements.section.addEventListener('change', loadSlots);
   elements.previousMonth.addEventListener('click', () => { state.calendarView = new Date(state.calendarView.getFullYear(), state.calendarView.getMonth() - 1, 1); renderCalendar(); });
-  elements.nextMonth.addEventListener('click', () => { state.calendarView = new Date(state.calendarView.getFullYear(), state.calendarView.getMonth() + 1, 1); renderCalendar(); });
+  elements.nextMonth.addEventListener('click', () => {
+    const nextMonth = new Date(state.calendarView.getFullYear(), state.calendarView.getMonth() + 1, 1);
+    if (`${nextMonth.getFullYear()}-${String(nextMonth.getMonth() + 1).padStart(2, '0')}-01` <= lastBookableDate()) state.calendarView = nextMonth;
+    renderCalendar();
+  });
   document.querySelector('#change-date').addEventListener('click', changeDate);
   elements.continueButton.addEventListener('click', showDetails); document.querySelector('#back-button').addEventListener('click', showBooking); elements.detailsForm.addEventListener('submit', submitReservation);
   document.querySelector('#download-card').addEventListener('click', downloadCard); document.querySelector('#restart-button').addEventListener('click', () => location.reload());

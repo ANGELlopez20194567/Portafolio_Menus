@@ -21,6 +21,8 @@ viven en `private` y no forman parte de la Data API.
   motivo de los cierres excepcionales futuros dentro de la ventana de reservas.
 - `20260831233115_add_reservation_email_delivery_worker`: añade las RPC privadas del worker que reclama
   confirmaciones de correo sin duplicarlas y registra el resultado de Resend.
+- `20260901120000_add_maximum_advance_days_to_reservation_settings`: añade la ventana máxima de días
+  para reservar, la expone al calendario público y la valida al crear una reserva.
 
 Las migraciones fueron aplicadas mediante el conector oficial de Supabase y quedan
 registradas en `supabase_migrations.schema_migrations`.

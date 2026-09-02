@@ -5,13 +5,18 @@
 
   async function getBookingConfig(restaurantId) {
     if (!client || !restaurantId) return null;
-    const { data, error } = await client.rpc('get_restaurant_booking_config', {
+    const [{ data, error }, bookingWindow] = await Promise.all([
+      client.rpc('get_restaurant_booking_config', {
       p_restaurant_public_id: restaurantId
-    });
+      }),
+      client.rpc('get_restaurant_booking_window', { p_restaurant_public_id: restaurantId })
+    ]);
     if (error) throw error;
+    if (bookingWindow.error) throw bookingWindow.error;
     if (!data) return null;
     return {
       ...data,
+      maximum_advance_days: bookingWindow.data,
       sections: (data.sections || []).map((section) => ({
         publicId: section.id,
         name: section.name,

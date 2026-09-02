@@ -581,6 +581,7 @@
     form.elements.duration.value = state.settings.default_duration_minutes;
     form.elements.party.value = state.settings.maximum_party_size;
     form.elements.advance.value = state.settings.minimum_advance_minutes;
+    form.elements.bookingWindow.value = state.settings.maximum_advance_days == null ? 30 : state.settings.maximum_advance_days;
   }
 
   async function toggleRow(table, item, label) {
@@ -692,7 +693,8 @@
         slot_interval_minutes: Number(values.get('interval')),
         default_duration_minutes: Number(values.get('duration')),
         maximum_party_size: Number(values.get('party')),
-        minimum_advance_minutes: Number(values.get('advance'))
+        minimum_advance_minutes: Number(values.get('advance')),
+        maximum_advance_days: Number(values.get('bookingWindow'))
       }, { onConflict: 'restaurant_id' });
       if (result.error) throw result.error;
       await loadDashboard();
