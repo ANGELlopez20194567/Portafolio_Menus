@@ -10,11 +10,10 @@
     calendar: document.querySelector('.guest-calendar'), calendarGrid: document.querySelector('#guest-calendar-grid'),
     calendarMonth: document.querySelector('#calendar-month'), previousMonth: document.querySelector('#calendar-previous'),
     nextMonth: document.querySelector('#calendar-next'), bookingOptions: document.querySelector('#booking-options'),
-    selectedBookingDate: document.querySelector('#selected-booking-date')
+    selectedBookingDate: document.querySelector('#selected-booking-date'), errorBanner: document.querySelector('#reservation-error-banner')
   };
-  const demoConfig = { name: 'Restaurante SAKURA', maximum_party_size: 12, maximum_advance_days: 30, open_weekdays: [0, 2, 3, 4, 5, 6], closed_dates: [], sections: [{ publicId: 'interior', name: 'Interior' }, { publicId: 'terraza', name: 'Terraza' }] };
   const today = new Date();
-  const state = { restaurantId: null, config: demoConfig, demo: true, selectedSlot: null, result: null, calendarView: new Date(today.getFullYear(), today.getMonth(), 1) };
+  const state = { restaurantId: null, config: null, selectedSlot: null, result: null, calendarView: new Date(today.getFullYear(), today.getMonth(), 1) };
 
   function localDate() {
     const date = new Date();
@@ -36,18 +35,22 @@
     return new Intl.DateTimeFormat('es-MX', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(year, month - 1, day));
   }
   function setMessage(target, text, error) { target.textContent = text || ''; target.classList.toggle('is-error', Boolean(error)); }
+  function showError() { elements.errorBanner.hidden = false; }
 
   async function initialize() {
     elements.date.value = ''; elements.date.min = localDate();
     state.restaurantId = new URLSearchParams(location.search).get('restaurant') || api.config.restaurantId || localStorage.getItem('mesa-restaurant-id') || null;
-    if (api.configured && state.restaurantId) {
-      try {
-        const remoteConfig = await api.getBookingConfig(state.restaurantId);
-        if (remoteConfig) { state.config = remoteConfig; state.demo = false; }
-        else throw new Error('Restaurante no disponible.');
-      } catch (error) { console.warn(`No fue posible abrir el restaurante: ${error.message}`); }
+    try {
+      if (!api.configured || !state.restaurantId) throw new Error('Configuración de reservas no disponible.');
+      const remoteConfig = await api.getBookingConfig(state.restaurantId);
+      if (!remoteConfig) throw new Error('Restaurante no disponible.');
+      state.config = remoteConfig;
+      populateControls(); renderCalendar();
+    } catch (error) {
+      console.warn(`No fue posible abrir el restaurante: ${error.message}`);
+      showError();
+      elements.bookingStep.classList.add('is-hidden');
     }
-    populateControls(); renderCalendar();
   }
 
   function renderCalendar() {
@@ -135,9 +138,9 @@
     state.selectedSlot = null; elements.continueButton.disabled = true; elements.slots.innerHTML = '<p class="empty-inline">Buscando horarios…</p>';
     elements.partyLabel.textContent = `${elements.party.value} comensales`; setMessage(elements.message, '');
     try {
-      const slots = state.demo ? ['13:00', '13:30', '14:00', '15:30', '19:00', '19:30'].map((time) => ({ starts_at: `${elements.date.value}T${time}:00-05:00` })) : await api.getSlots({ restaurantId: state.restaurantId, date: elements.date.value, partySize: Number(elements.party.value), sectionId: elements.section.value });
+      const slots = await api.getSlots({ restaurantId: state.restaurantId, date: elements.date.value, partySize: Number(elements.party.value), sectionId: elements.section.value });
       renderSlots(slots);
-    } catch (error) { elements.slots.innerHTML = ''; setMessage(elements.message, error.message, true); }
+    } catch (error) { elements.slots.innerHTML = ''; setMessage(elements.message, '', true); showError(); }
   }
 
   function renderSlots(slots) {
@@ -168,10 +171,10 @@
     const submit = elements.detailsForm.querySelector('[type="submit"]'); submit.disabled = true; setMessage(document.querySelector('#details-message'), 'Confirmando…');
     const values = { restaurantId: state.restaurantId, startsAt: state.selectedSlot.starts_at, partySize: Number(elements.party.value), sectionId: elements.section.value, name: document.querySelector('#guest-name').value.trim(), email: document.querySelector('#guest-email').value.trim(), phone: document.querySelector('#guest-phone').value.trim(), notes: document.querySelector('#guest-notes').value.trim() };
     try {
-      state.result = state.demo ? { reservation_code: `SAKURA-${Math.random().toString(36).slice(2, 8).toUpperCase()}`, lookup_token: crypto.randomUUID(), starts_at: values.startsAt, status: 'confirmed' } : await api.createReservation(values);
+      state.result = await api.createReservation(values);
       state.result.name = values.name; state.result.email = values.email; state.result.partySize = values.partySize; state.result.sectionName = elements.section.selectedOptions[0].textContent;
       showConfirmation();
-    } catch (error) { setMessage(document.querySelector('#details-message'), error.message, true); submit.disabled = false; }
+    } catch (error) { setMessage(document.querySelector('#details-message'), '', true); showError(); submit.disabled = false; }
   }
 
   function showConfirmation() {
@@ -179,11 +182,9 @@
     elements.cardIntro.textContent = 'Tu lugar ha quedado reservado. Conserva el código para consultar tu visita.';
     document.querySelector('#confirmed-name').textContent = state.result.name; document.querySelector('#confirmed-date').textContent = formatDate(state.result.starts_at);
     document.querySelector('#confirmed-detail').textContent = `${state.result.partySize} personas · ${state.result.sectionName}`; document.querySelector('#confirmed-code').textContent = `ID ${state.result.reservation_code}`;
-    document.querySelector('#email-note').textContent = state.demo
-      ? 'Confirmación demostrativa: la reserva no se guardó.'
-      : state.result.email_delivery_status === 'sent' || state.result.email_delivery_status === 'already_processed'
-        ? `Enviamos la confirmación a ${state.result.email}.`
-        : `La confirmación quedó en cola para enviarse a ${state.result.email}.`;
+    document.querySelector('#email-note').textContent = state.result.email_delivery_status === 'sent' || state.result.email_delivery_status === 'already_processed'
+      ? `Enviamos la confirmación a ${state.result.email}. Si no la ves en tu bandeja de entrada, revisa tu carpeta de correo no deseado.`
+      : `La confirmación quedó en cola para enviarse a ${state.result.email}. Si no la ves en tu bandeja de entrada, revisa tu carpeta de correo no deseado.`;
     document.querySelector('#lookup-code').value = state.result.reservation_code;
   }
 
@@ -225,8 +226,7 @@
 
   async function lookup(event) {
     event.preventDefault(); const target = document.querySelector('#lookup-result');
-    if (state.demo) { target.textContent = 'La consulta estará disponible al activar el servicio de reservas.'; return; }
-    try { const receipt = await api.getReceipt(document.querySelector('#lookup-code').value); target.textContent = receipt ? `${receipt.guest_name} · ${formatDate(receipt.starts_at)} · ${receipt.party_size} personas · ${receipt.status}` : 'Reserva no encontrada.'; } catch (error) { target.textContent = error.message; }
+    try { const receipt = await api.getReceipt(document.querySelector('#lookup-code').value); target.textContent = receipt ? `${receipt.guest_name} · ${formatDate(receipt.starts_at)} · ${receipt.party_size} personas · ${receipt.status}` : 'Reserva no encontrada.'; } catch (error) { target.textContent = ''; showError(); }
   }
 
   elements.party.addEventListener('change', loadSlots); elements.section.addEventListener('change', loadSlots);
