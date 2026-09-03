@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { relative, resolve, sep } from 'node:path';
 
 const repositoryDirectory = resolve('.');
@@ -51,6 +51,24 @@ for (const directory of publicDirectories) {
     filter: shouldPublish
   });
 }
+
+// GitHub Pages serves this directory as the custom domain's root. Keep the
+// complete portfolio under /apps, but expose the landing page at / as well.
+await cp(resolve(repositoryDirectory, 'apps/landing'), outputDirectory, {
+  recursive: true,
+  filter: shouldPublish
+});
+
+const landingIndex = resolve(outputDirectory, 'index.html');
+const rootLanding = (await readFile(landingIndex, 'utf8'))
+  .replace('../../packages/portfolio-shell/portfolio-shell.css', 'packages/portfolio-shell/portfolio-shell.css')
+  .replaceAll('href="../landing/"', 'href="./"')
+  .replaceAll('href="../classic/', 'href="apps/classic/')
+  .replaceAll('href="../menu-informativo/', 'href="apps/menu-informativo/')
+  .replaceAll('href="../menu-interactivo/', 'href="apps/menu-interactivo/')
+  .replaceAll('href="../reservas-estatico/', 'href="apps/reservas-estatico/');
+
+await writeFile(landingIndex, rootLanding, 'utf8');
 
 const publicConfig = {
   url: process.env.SUPABASE_URL.replace(/\/$/, ''),

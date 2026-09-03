@@ -1,10 +1,12 @@
-name: Publicar reservas en GitHub Pages
+name: Publicar portafolio en GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
-      - 'apps/reservas-estatico/**'
+      - 'apps/**'
+      - 'assets/**'
+      - 'packages/**'
       - 'scripts/build-reservas-pages.mjs'
       - '.github/workflows/reservas-pages.yml'
   workflow_dispatch:
@@ -38,7 +40,7 @@ jobs:
       - name: Subir artefacto de Pages
         uses: actions/upload-pages-artifact@v4
         with:
-          path: apps/landing
+          path: _site
 
   deploy:
     environment:

@@ -4,6 +4,14 @@ Colección de demos web para restaurantes. La portada está en `apps/landing`.
 
 El primer ejemplo terminado es `apps/classic`: una carta italiana responsive. La tarjeta flotante de cotización reutilizable vive en `packages/floating-quote-card`.
 
+## Publicación en GitHub Pages
+
+El flujo `.github/workflows/reservas-pages.yml` genera el sitio público completo.
+La landing se publica como la página principal (`/`) y las demostraciones siguen
+disponibles bajo `/apps/<nombre-del-proyecto>/`. Así, un dominio personalizado
+configurado en GitHub Pages abre directamente la landing sin romper los enlaces
+del portafolio.
+
 La guía SEO independiente está en [docs/SEO.md](docs/SEO.md).
 
 La taxonomía vigente de productos y su historial están en [docs/MENU_CATEGORIES_HISTORY.md](docs/MENU_CATEGORIES_HISTORY.md). Este documento es la referencia para crear fichas técnicas posteriores.
