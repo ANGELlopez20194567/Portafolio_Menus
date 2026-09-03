@@ -2,4 +2,5 @@
 
 @media (max-width: 720px) {
   .title-group p { display: block; max-width: 19rem; margin-top: .75rem; font-size: .875rem; line-height: 1.45; }
+  .project-meta .quote-button { display: inline-flex; margin-top: 10px; white-space: nowrap; }
 }

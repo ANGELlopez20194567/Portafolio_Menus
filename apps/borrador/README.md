@@ -1,7 +1,7 @@
-# Borrador de la landing anterior
+# Borrador: landing comercial de RavelTech
 
-Versión anterior de la portada del portafolio, conservada como borrador aislado para referencia y futuras pruebas. Está marcada con `noindex, nofollow` y no debe publicarse como la landing principal.
+Esta es la página de pruebas de la landing comercial. No se indexa (`noindex, nofollow`) y no reemplaza la portada pública `apps/landing`.
 
-La estructura visual compartida con `apps/landing` vive en `packages/portfolio-shell/portfolio-shell.css`. Las diferencias de esta versión se mantienen en su `styles.css` local.
+Incluye una propuesta oscura orientada a captar restaurantes, con enlaces a Classic Menu, Menú informativo, Menú interactivo y Sistema de reservaciones. Cada propuesta explica qué ofrece y para qué restaurante funciona mejor.
 
-Para verla, sirve el repositorio desde su raíz y abre `/apps/borrador/`. La portada pública vigente está en `/apps/landing/` y el ejemplo Classic Menu en `/apps/classic/`.
+Ábrela desde la raíz del repositorio en `/apps/borrador/`.

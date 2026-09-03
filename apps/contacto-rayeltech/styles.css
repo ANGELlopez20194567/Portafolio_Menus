@@ -1,0 +1,80 @@
+:root {
+  color-scheme: light;
+  --paper: #f0eee8;
+  --panel: #f7f5ef;
+  --ink: #541267;
+  --muted: #63366d;
+  --purple: #541267;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { min-width: 320px; color: var(--ink); background: var(--paper); }
+
+.contact-experience {
+  display: grid;
+  grid-template-columns: minmax(230px, .82fr) minmax(330px, 1.18fr);
+  gap: clamp(10px, 1.1vw, 20px);
+  height: 100dvh;
+  padding: clamp(12px, 2.3vw, 42px);
+}
+
+.intro-panel, .form-panel {
+  min-height: 0;
+  padding: clamp(20px, 3.1vw, 52px);
+  background: var(--panel);
+  box-shadow: 0 16px 38px rgba(84, 18, 103, .12);
+}
+.intro-panel { display: flex; flex-direction: column; }
+.brand { color: var(--ink); font-family: "DM Mono", monospace; font-size: clamp(.72rem, 1vw, .95rem); font-weight: 500; letter-spacing: .02em; text-decoration: none; text-transform: uppercase; }
+.brand span { color: #dc5d45; }
+.title-group { margin: auto 0; }
+.eyebrow, .form-kicker { margin: 0 0 10px; color: #dc5d45; font-family: "DM Mono", monospace; font-size: clamp(.58rem, .72vw, .75rem); font-weight: 500; letter-spacing: .1em; }
+h1, h2 { margin: 0; font-family: "Anton", Impact, sans-serif; font-weight: 400; letter-spacing: -.01em; text-transform: uppercase; }
+h1 { font-size: clamp(3rem, 6.4vw, 7.2rem); line-height: .9; }
+.intro { max-width: 20rem; margin: clamp(12px, 1.8vw, 26px) 0 0; color: var(--muted); font-size: clamp(.75rem, 1vw, 1rem); font-weight: 500; line-height: 1.45; }
+.menu-references { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.menu-references a { padding: 8px 0; border-top: 1px solid rgba(84, 18, 103, .35); color: var(--muted); font-family: "DM Mono", monospace; font-size: clamp(.55rem, .67vw, .71rem); line-height: 1.15; text-decoration: none; text-transform: uppercase; transition: color .2s ease, border-color .2s ease; }
+.menu-references a:hover, .menu-references a:focus-visible { border-color: #dc5d45; color: #dc5d45; outline: 0; }
+
+.form-panel { display: flex; flex-direction: column; justify-content: center; }
+.form-heading { margin-bottom: clamp(12px, 2vh, 25px); }
+.form-kicker { color: var(--muted); }
+h2 { font-size: clamp(2.1rem, 4vw, 4.1rem); line-height: .92; }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(9px, 1.3vh, 16px) clamp(10px, 1.25vw, 18px); }
+.field { display: grid; gap: 5px; }
+.field-email, .field-message, button, .form-status { grid-column: 1 / -1; }
+label { font-family: "DM Mono", monospace; font-size: clamp(.63rem, .76vw, .78rem); font-weight: 500; letter-spacing: .03em; text-transform: uppercase; }
+label span { color: var(--muted); font-size: .9em; text-transform: none; }
+input, textarea { width: 100%; border: 1px solid rgba(84, 18, 103, .34); border-radius: 0; background: transparent; padding: clamp(8px, 1.15vh, 13px) 10px; color: var(--ink); font: inherit; transition: border-color .2s, box-shadow .2s; }
+textarea { height: clamp(52px, 9vh, 100px); resize: none; }
+input:focus, textarea:focus { outline: 0; border-color: #dc5d45; box-shadow: 0 2px 0 #dc5d45; }
+input:user-invalid { border-color: #c42c37; }
+button { border: 1px solid var(--purple); border-radius: 999px; padding: clamp(9px, 1.2vh, 14px) 17px; color: #fff; background: var(--purple); font: 500 clamp(.64rem, .75vw, .78rem) "DM Mono", monospace; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s, color .2s; }
+button:hover, button:focus-visible { color: var(--purple); background: transparent; outline: 0; }
+.form-status { min-height: 1em; margin: calc(clamp(9px, 1.3vh, 16px) * -0.35) 0 0; color: var(--muted); font-size: clamp(.62rem, .7vw, .75rem); }
+
+@media (max-width: 680px) {
+  .contact-experience { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 10px; padding: 10px; }
+  .intro-panel { display: grid; grid-template-columns: 1fr auto; gap: 13px; padding: 17px 20px; }
+  .title-group { margin: 0; }
+  h1 { font-size: clamp(2.25rem, 10vw, 4.2rem); }
+  .intro { display: none; }
+  .menu-references { align-self: end; grid-template-columns: 1fr; gap: 0; width: min-content; white-space: nowrap; }
+  .menu-references a { padding: 3px 0; font-size: .57rem; }
+  .form-panel { padding: 18px 20px; }
+}
+
+@media (max-height: 620px) {
+  .contact-experience { padding: 8px; }
+  .intro-panel, .form-panel { padding: 14px 18px; }
+  .form-heading { margin-bottom: 8px; }
+  .eyebrow, .form-kicker { margin-bottom: 5px; }
+  .menu-references a { padding: 2px 0; }
+  form { gap: 7px 10px; }
+  .field { gap: 3px; }
+  input { padding: 6px 8px; }
+  textarea { height: 42px; }
+  button { padding: 7px 14px; }
+}
