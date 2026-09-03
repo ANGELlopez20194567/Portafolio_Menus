@@ -7,6 +7,7 @@ on:
       - 'apps/**'
       - 'assets/**'
       - 'packages/**'
+      - 'favicon.svg'
       - 'scripts/build-reservas-pages.mjs'
       - '.github/workflows/reservas-pages.yml'
   workflow_dispatch:

@@ -52,6 +52,10 @@ for (const directory of publicDirectories) {
   });
 }
 
+// El favicon compartido vive en la raíz y debe estar disponible tanto para la
+// landing publicada en / como para las demos bajo /apps.
+await cp(resolve(repositoryDirectory, 'favicon.svg'), resolve(outputDirectory, 'favicon.svg'));
+
 // GitHub Pages serves this directory as the custom domain's root. Keep the
 // complete portfolio under /apps, but expose the landing page at / as well.
 await cp(resolve(repositoryDirectory, 'apps/landing'), outputDirectory, {
