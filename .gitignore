@@ -16,3 +16,5 @@ coverage/
 .agents/
 skills-lock.json
 _site/
+supabase/.temp/
+apps/contacto-rayeltech/config.local.js

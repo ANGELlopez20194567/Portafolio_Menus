@@ -87,4 +87,13 @@ await writeFile(
   'utf8'
 );
 
+await writeFile(
+  resolve(outputDirectory, 'apps/contacto-rayeltech/config.local.js'),
+  `window.CONTACT_FORM_CONFIG = ${JSON.stringify({
+    url: publicConfig.url,
+    publishableKey: publicConfig.publishableKey,
+  }, null, 2)};\n`,
+  'utf8'
+);
+
 console.log(`Portafolio con reservas preparado en ${outputDirectory}`);
