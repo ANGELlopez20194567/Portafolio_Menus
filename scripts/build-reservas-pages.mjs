@@ -70,6 +70,7 @@ const rootLanding = (await readFile(landingIndex, 'utf8'))
   .replaceAll('href="../classic/', 'href="apps/classic/')
   .replaceAll('href="../menu-informativo/', 'href="apps/menu-informativo/')
   .replaceAll('href="../menu-interactivo/', 'href="apps/menu-interactivo/')
+  .replaceAll('href="../contacto-rayeltech/', 'href="apps/contacto-rayeltech/')
   .replaceAll('href="../reservas-estatico/', 'href="apps/reservas-estatico/');
 
 await writeFile(landingIndex, rootLanding, 'utf8');
