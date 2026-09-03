@@ -2,7 +2,7 @@
 
 Página HTML estática y responsive para solicitar nombre, teléfono, correo y un mensaje opcional. Reutiliza la paleta y tipografías de `rayeltech.lat` e incorpora accesos a los menús Classic, Informative, Interactive y Reservations.
 
-Al enviar, abre el cliente de correo configurado en el dispositivo con un correo prellenado a `info@rayeltech.lat`. El visitante debe confirmar el envío desde ese cliente.
+Al enviar, el formulario se entrega directamente a `info@rayeltech.lat` a través de FormSubmit, sin abrir el cliente de correo del visitante. La primera vez, FormSubmit envía un correo de activación a esa cuenta; confirme la activación para habilitar la entrega.
 
 ## Uso
 
@@ -12,4 +12,4 @@ La interfaz está diseñada a una altura de `100dvh`, sin desplazamiento de pág
 
 ## Entrega automática
 
-Para que los mensajes se entreguen sin depender de un cliente de correo, conecte el formulario a un endpoint propio o a un proveedor transaccional. No incluya credenciales en los archivos del cliente.
+No se incluyen credenciales en el cliente. Si en el futuro se requiere control total del envío, conecte el formulario a un endpoint propio o a un proveedor transaccional desde el servidor.

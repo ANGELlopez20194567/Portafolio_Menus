@@ -32,7 +32,9 @@
           <p class="form-kicker">CONTACTO</p>
           <h2 id="form-title">Cuéntanos tu idea</h2>
         </div>
-        <form id="contact-form" novalidate>
+        <form id="contact-form" action="https://formsubmit.co/info@rayeltech.lat" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo contacto desde rayeltech.lat" />
+          <input type="hidden" name="_template" value="table" />
           <div class="field field-name">
           <label for="name">Nombre</label>
           <input id="name" name="name" type="text" autocomplete="name" required />
@@ -54,11 +56,8 @@
         </div>
 
         <button type="submit">Enviar mensaje</button>
-        <p id="form-status" class="form-status" aria-live="polite"></p>
       </form>
       </section>
     </main>
-
-    <script src="script.js"></script>
   </body>
 </html>
