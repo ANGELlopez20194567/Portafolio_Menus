@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    :root { --bg: #161411; --fg: #f7f1e8; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #f7f1e8; --fg: #161411; } }
+  </style>
+  <rect width="64" height="64" rx="14" fill="var(--bg)"/>
+  <path fill="var(--fg)" d="M14 47V17h14.6c7.1 0 11.2 3.3 11.2 8.9 0 4-2.2 6.7-6.1 8l7.2 13.1h-8.1l-6.2-11.7h-4.9V47H14Zm7.7-17.9h6.1c2.8 0 4.3-1 4.3-3.1s-1.5-3.1-4.3-3.1h-6.1v6.2ZM40.7 17h11.8v6.4h-4V47h-7.7V23.4h-4V17Z"/>
+</svg>
