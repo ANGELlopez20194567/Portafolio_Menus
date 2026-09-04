@@ -52,8 +52,12 @@ input, textarea { width: 100%; border: 1px solid rgba(84, 18, 103, .34); border-
 textarea { height: clamp(52px, 9vh, 100px); resize: none; }
 input:focus, textarea:focus { outline: 0; border-color: #dc5d45; box-shadow: 0 2px 0 #dc5d45; }
 input:user-invalid { border-color: #c42c37; }
-button { border: 1px solid var(--purple); border-radius: 999px; padding: clamp(9px, 1.2vh, 14px) 17px; color: #fff; background: var(--purple); font: 500 clamp(.64rem, .75vw, .78rem) "DM Mono", monospace; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s, color .2s; }
+button { border: 1px solid var(--purple); border-radius: 999px; padding: clamp(9px, 1.2vh, 14px) 17px; font: 500 clamp(.64rem, .75vw, .78rem) "DM Mono", monospace; letter-spacing: .06em; text-align: center; text-transform: uppercase; transition: background .2s, color .2s; }
+button { color: #fff; background: var(--purple); cursor: pointer; }
 button:hover, button:focus-visible { color: var(--purple); background: transparent; outline: 0; }
+.whatsapp-button { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: clamp(9px, 1.2vh, 14px); border-radius: 999px; padding: clamp(9px, 1.2vh, 14px) 17px; color: #fff; background: #25d366; font: 500 clamp(.64rem, .75vw, .78rem) "DM Mono", monospace; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; transition: background .2s, transform .2s; }
+.whatsapp-button:hover, .whatsapp-button:focus-visible { outline: 0; background: #1da851; transform: translateY(-1px); }
+.whatsapp-mark { display: grid; width: 18px; height: 18px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font: 700 12px/1 Arial, sans-serif; }
 .form-status { min-height: 1em; margin: calc(clamp(9px, 1.3vh, 16px) * -0.35) 0 0; color: var(--muted); font-size: clamp(.62rem, .7vw, .75rem); }
 
 @media (max-width: 680px) {
